@@ -6,7 +6,11 @@ let delta;
 let osc, playing, freq, amp;
 
 function setup() {
-  let cnv = createCanvas(100, 100);
+
+  //setup font
+  font = loadFont('fonts/Roboto-Medium.ttf');
+
+  let cnv = createCanvas(400, 400);
   cnv.mousePressed(playOscillator);
   osc = new p5.Oscillator('sine');
 
@@ -55,6 +59,11 @@ function draw() {
     freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
     amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
   
+    noStroke();
+    fill('red');
+    textSize(16);
+    textFont(font);
+    translate(250,300);
     text('tap to play', 20, 20);
     text('freq: ' + freq, 20, 40);
     text('amp: ' + amp, 20, 60);
