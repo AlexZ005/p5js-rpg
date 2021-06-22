@@ -27,3 +27,31 @@ function shape3D() {
     pop();
 
 }
+
+//Archimedean Spiral (p5.js)
+//Nathan https://codepen.io/Twinbee/pen/gvMNJY
+function archimedeanSpiral() {
+    let angle = 0;
+    let oldX = width/2;
+    let oldY = height/2;
+    size = sizeSlider.value();
+    spiralWidth = widthSlider.value();
+    angle = angleSlider.value();
+    
+    oldX = width/2;
+    oldY = height/2;
+    
+    for (let i=0; i<size; i++) {
+        newAngle = (angle/10) * i;
+        x = (width/2) + (spiralWidth * newAngle) * Math.sin(newAngle);
+        y = (height/2) + (spiralWidth * newAngle) * Math.cos(newAngle);
+        
+        // stroke(randomColor()); // Random Color for each line segment
+        // strokeWeight(randomWeight()); // Random Weight (1-5)
+        
+        line(oldX, oldY, x, y);
+        oldX = x;
+        oldY = y;
+    }
+
+}

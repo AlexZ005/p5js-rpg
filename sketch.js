@@ -5,12 +5,14 @@ let delta;
 
 let osc, playing, freq, amp;
 
+
+
 function setup() {
-    angleMode(DEGREES)
+    //angleMode(DEGREES)
         //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
 
-    let cnv = createCanvas(400, 400, WEBGL);
+    let cnv = createCanvas(400, 400);
     cnv.mousePressed(playOscillator);
     osc = new p5.Oscillator('sine');
 
@@ -26,13 +28,21 @@ function setup() {
 
     synth = new p5.Oscillator('sine');
 
+    let angle = 0;
+    sizeSlider = createSlider(1, 1440, 1440);
+    sizeSlider.position(20, 20);
+    widthSlider = createSlider(1, 30, 1, .1);
+    widthSlider.position(20, 50);
+    angleSlider = createSlider(1, 65, 1, .1);
+    angleSlider.position(20, 80);
+
 }
 
 function draw() {
     background(51);
-    translate(0, 0, detailX.value())
+    //translate(0, 0, detailX.value())
 
-    camera(mouseX, 0, 460, 0, 0, 0, 0, 1, 0);
+    //camera(mouseX, 0, 460, 0, 0, 0, 0, 1, 0);
     //translate(width / 2, height / 2, -100);
     //    stroke(255);
     //  noFill();
@@ -44,7 +54,7 @@ function draw() {
     amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
     delta++;
-    translate(-200, -200)
+   // translate(-200, -200)
     radar();
 
     let a = 0.0;
@@ -75,7 +85,13 @@ function draw() {
     pop();
 
 
-    shape3D();
+   // shape3D();
+   
+   archimedeanSpiral();
+
+   push();
+   circle(129,100,100);
+   pop();
 
 
     stroke(255);
