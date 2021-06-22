@@ -18,7 +18,7 @@ function setup() {
     b = 2;
     delta = 0;
 
-    detailX = createSlider(1, 100, 1);
+    detailX = createSlider(1, 5, 0.01);
     detailX.position(10, height + 5);
     detailX.style('width', '80px');
     createP(detailX.value());
@@ -42,7 +42,7 @@ function draw() {
     let a = 0.0;
     let inc = TWO_PI / 25.0;
     for (let i = 0; i < 50; i++) {
-        line(i * 4, 50, i * 4, 50 + sin(a) * 40.0);
+        line(i * 4, 50, i * 4, 50 + sin(a) * 40.0 * amp);
         a = a + inc;
     }
 
