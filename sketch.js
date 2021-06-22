@@ -40,30 +40,31 @@ function draw() {
     radar();
 
     let a = 0.0;
-let inc = TWO_PI / 25.0;
-for (let i = 0; i < 50; i++) {
-  line(i * 4, 50, i * 4, 50 + sin(a) * 40.0);
-  a = a + inc;
-}
+    let inc = TWO_PI / 25.0;
+    for (let i = 0; i < 50; i++) {
+        line(i * 4, 50, i * 4, 50 + sin(a) * 40.0);
+        a = a + inc;
+    }
 
-var lifeGauge;
-var maxLifeGauge = 140;
+    var lifeGauge;
+    var maxLifeGauge = 140;
 
     push();
-            //https://graphicbeats.net/data/script.js
-            translate(200,100)
-            fill(255);
-            var lifeSpacer = 120;
-            noStroke();
-            text('L I F E', -maxLifeGauge / 2, lifeSpacer - 10);
-            rect(-80, lifeSpacer - 5, 1, 16);
-            rect(80, lifeSpacer - 5, 1, 16);
-            rect(-maxLifeGauge / 2, lifeSpacer, lifeGauge, 6);
-            stroke(255);
-            strokeWeight(1);
-            noFill();
-            rect(-maxLifeGauge / 2, lifeSpacer, maxLifeGauge, 6);
-    pop();    
+    //https://graphicbeats.net/data/script.js
+    translate(100, 100)
+    fill(255);
+    var lifeSpacer = 270;
+    noStroke();
+    textSize(8);
+    text('L I F E', -maxLifeGauge / 1.3, lifeSpacer + 5);
+    rect(-80, lifeSpacer - 5, 1, 16);
+    rect(80, lifeSpacer - 5, 1, 16);
+    rect(-maxLifeGauge / 2, lifeSpacer, lifeGauge, 6);
+    stroke(255);
+    strokeWeight(1);
+    noFill();
+    rect(-maxLifeGauge / 2, lifeSpacer, maxLifeGauge, 6);
+    pop();
 
 
     stroke(255);
@@ -98,27 +99,27 @@ var maxLifeGauge = 140;
 }
 
 function radar() {
-  push();
-  translate(30, 20);
-  line(0, 0, 30, 30);
-  line(0, 30, 30, 0);
-  pop();
+    push();
+    translate(30, 20);
+    line(0, 0, 30, 30);
+    line(0, 30, 30, 0);
+    pop();
 
-  push();
-  translate(45, 35);
-  rotate(delta / 100);
-  line(0, 0, 20, 0);
-  rotate(PI / 3);
-  line(0, 0, -20, 0);
-  rotate(PI / 3);
-  line(0, 0, 20, 0);
-  pop();
+    push();
+    translate(45, 35);
+    rotate(delta / 100);
+    line(0, 0, 20, 0);
+    rotate(PI / 3);
+    line(0, 0, -20, 0);
+    rotate(PI / 3);
+    line(0, 0, 20, 0);
+    pop();
 
-  translate(15, 5);
-  noFill();
-  circle(30, 30, 20);
-  circle(30, 30, 30);
-  circle(30, 30, 40);
+    translate(15, 5);
+    noFill();
+    circle(30, 30, 20);
+    circle(30, 30, 30);
+    circle(30, 30, 40);
 }
 
 function playOscillator() {
