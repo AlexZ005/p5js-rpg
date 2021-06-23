@@ -6,11 +6,11 @@ let delta;
 let osc, playing, freq, amp;
 
 function setup() {
-
-    //setup font
+    angleMode(DEGREES)
+        //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
 
-    let cnv = createCanvas(400, 400);
+    let cnv = createCanvas(400, 400, WEBGL);
     cnv.mousePressed(playOscillator);
     osc = new p5.Oscillator('sine');
 
@@ -18,7 +18,7 @@ function setup() {
     b = 2;
     delta = 0;
 
-    detailX = createSlider(1, 5, 0.01);
+    detailX = createSlider(-401, 400, 1);
     detailX.position(10, height + 5);
     detailX.style('width', '80px');
     createP(detailX.value());
@@ -30,13 +30,21 @@ function setup() {
 
 function draw() {
     background(51);
+    translate(0, 0, detailX.value())
+
+    camera(mouseX, 0, 460, 0, 0, 0, 0, 1, 0);
+    //translate(width / 2, height / 2, -100);
+    //    stroke(255);
+    //  noFill();
+    //box(200);
+
     stroke(255, 100);
 
     freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
     amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
     delta++;
-
+    translate(-200, -200)
     radar();
 
     let a = 0.0;
@@ -65,6 +73,9 @@ function draw() {
     noFill();
     rect(-maxLifeGauge / 2, lifeSpacer, maxLifeGauge, 6);
     pop();
+
+
+    shape3D();
 
 
     stroke(255);
