@@ -24,7 +24,8 @@ function setup() {
     detailX.position(10, height + 5);
     detailX.style('width', '80px');
     createP(detailX.value());
-    createP("tset" + [a + b]);
+    
+    createP("test").addClass("score")
 
     synth = new p5.Oscillator('sine');
 
@@ -90,7 +91,8 @@ function draw() {
    archimedeanSpiral();
 
    push();
-   circle(129,100,100);
+   circle(freq,100,100);
+   document.getElementsByClassName("score")[0].innerHTML = freq;   
    pop();
 
 
