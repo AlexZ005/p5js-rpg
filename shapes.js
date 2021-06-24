@@ -55,3 +55,39 @@ function archimedeanSpiral() {
     }
 
 }
+
+// Tutorial From: The Coding Train
+// https://www.youtube.com/watch?v=H81Tdrmz2LA&index=122&list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH
+function cubewave() {
+    ortho(-450, 450, -450, 450, 0, 2000);
+    ambientLight(50, 50, 50, 0, -1, 0);
+    directionalLight(250, 250, 250, 100, 0, 1);
+    // pointLight(250, 250, 250, 100, 10, 500);
+    
+    translate(0, 0, -50);
+    rotateX(-QUARTER_PI);
+    rotateY(ma);
+    
+    let offset = 0;
+    for (let z=0; z<height; z+=w){
+    
+      for (let x=0; x<width; x+=w){
+        push();
+        
+        let d = dist(x, z, width/2, height/2);
+        let offset = map(d, 0, maxD, -PI, PI);
+        let a = angle + offset;
+        let h = floor(map(sin(a), -1, 1, 100, 300));
+  
+        ambientMaterial(50, 150, 220);
+  
+        translate(x-(width/2), 0, z-(height/2));
+  
+        box(w-2, h, w-2);
+        pop();
+      }
+      offset+=.1;
+    }
+    
+    angle-=0.1;
+  }

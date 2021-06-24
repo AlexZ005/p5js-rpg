@@ -5,15 +5,26 @@ let delta;
 
 let osc, playing, freq, amp;
 
+let mode = "";
 
+    let angle = 0.1,
+    w=24,
+    ma,
+    maxD;
 
 function setup() {
-    //angleMode(DEGREES)
+    
         //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
-
-    let cnv = createCanvas(400, 400);
+    if (mode == ""){
+      let cnv = createCanvas(400, 400, P2D);
+      
+    } else {
+    //angleMode(DEGREES)
+    let cnv = createCanvas(400, 400, WEBGL);
     cnv.mousePressed(playOscillator);
+  }
+
     osc = new p5.Oscillator('sine');
 
     a = 5;
@@ -36,6 +47,10 @@ function setup() {
     widthSlider.position(20, 50);
     angleSlider = createSlider(1, 65, 1, .1);
     angleSlider.position(20, 80);
+
+
+    ma = atan(1);
+  maxD=dist(0, 0, 200, 200);
 
 }
 
@@ -86,10 +101,10 @@ function draw() {
     pop();
 
 
-   // shape3D();
+   //shape3D();
    
-   archimedeanSpiral();
-
+   //archimedeanSpiral();
+   //cubewave();
    push();
    circle(freq,100,100);
    document.getElementsByClassName("score")[0].innerHTML = freq;   
