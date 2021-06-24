@@ -121,3 +121,44 @@ function cubewave() {
         sel2++;
     
   }
+
+  //Chasers by Nathan
+  //https://codepen.io/Twinbee/pen/qBrWooB
+  class Mover {
+    constructor() {
+      this.location = createVector(random(width), random(height))
+      this.velocity = createVector(0, 0)
+      this.acceleration = createVector(0, 0)
+      this.topSpeed = 5
+    }
+    
+    update() {
+      let mouse = createVector(mouseX, mouseY)
+      
+      let direction = mouse.sub(this.location)
+  
+      direction.normalize()
+  
+      direction.mult(Math.random()/3)
+  
+      this.acceleration = direction
+  
+      this.velocity.add(this.acceleration)
+      this.velocity.limit(this.topSpeed)
+      this.location.add(this.velocity)
+    }
+    
+    display() {
+      noStroke()
+      let blue = map(this.location.y, 400, 0, 0, 255)
+      fill(0, blue, 255)
+      rect(this.location.x, this.location.y, 2, 2)
+    }
+    
+    checkEdges() {
+      if (this.location.x > width) this.location.x = 0
+      if (this.location.x < 0) this.location.x = width
+      if (this.location.y > height) this.location.y = 0
+      if (this.location.y < 0) this.location.y = height
+    }
+  }

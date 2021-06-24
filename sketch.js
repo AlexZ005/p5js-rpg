@@ -18,6 +18,16 @@ let mode = "";
   let t1= 0;
   let sel1 = 0, sel2 = 0;
 
+  //Particle movers
+  let c = {
+    "width": 400,
+    "height": 400
+  }
+  let cx = c.width/2,
+  cy = c.height/2
+  let movers = []
+  let moverCount = 50
+
 
 function setup() {
     
@@ -60,6 +70,10 @@ function setup() {
   maxD=dist(0, 0, 200, 200);
 
 
+  angleMode(DEGREES)
+  for (let i=0; i<moverCount; i++) {
+  movers.push(new Mover)
+  }
   
 }
 
@@ -111,9 +125,18 @@ function draw() {
 
 
    //shape3D();
-   perlin()
+   //perlin()
    //archimedeanSpiral();
    //cubewave();
+
+    //Particle mouse
+      // background("rgba(0, 0, 0, 0.05)")
+      // for (let i=0; i<moverCount; i++) {
+      //   movers[i].update()
+      //   movers[i].checkEdges()
+      //   movers[i].display()
+      // }
+
    push();
    circle(freq,100,100);
    document.getElementsByClassName("score")[0].innerHTML = freq;   
