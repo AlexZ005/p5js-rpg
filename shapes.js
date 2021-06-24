@@ -28,7 +28,7 @@ function shape3D() {
 
 }
 
-//Archimedean Spiral (p5.js)
+//Archimedean Spiral (js)
 //Nathan https://codepen.io/Twinbee/pen/gvMNJY
 function archimedeanSpiral() {
     let angle = 0;
@@ -90,4 +90,34 @@ function cubewave() {
     }
     
     angle-=0.1;
+  }
+
+  //Perlin noise sample by Filippo Guida
+  //https://codepen.io/filippoguida/pen/oOrRWP
+  function perlin(){
+      //clear();
+      //noFill();
+      for(let i = 1; i < 80; i++) {
+        strokeWeight(noise(t));
+        bezier(
+          mouseX,
+          mouseY, //[height/2, i*8, 0, random(8)][sel1%4]
+          noise(t)*width,
+          noise(t*2)*height,
+          noise(t*3)*width,
+          noise(t + i*8)*height,
+          width,
+          [height/2, i*8, height, random(8)][sel2%4]
+        )
+      }
+      
+      t += 0.02;
+      t1 += 0.08;
+      
+      if(frameCount % 200 == 0) 
+        sel1++;
+      
+      if(frameCount % 300 == 0) 
+        sel2++;
+    
   }

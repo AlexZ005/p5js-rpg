@@ -1,0 +1,19 @@
+/* from https://codepen.io/Twinbee/pen/MQozXq
+Quick Console for Easier Viewing */
+
+.console {
+  height: 70px;
+  width: 100%;
+  background: #000;
+  padding: 15px 20px;
+  margin: 0 20px;
+  
+  font-family: Courier;
+  color: limegreen;
+  
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  
+  overflow-y: scroll;
+}

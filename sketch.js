@@ -12,6 +12,13 @@ let mode = "";
     ma,
     maxD;
 
+
+      //perlin
+  let t = 0;
+  let t1= 0;
+  let sel1 = 0, sel2 = 0;
+
+
 function setup() {
     
         //setup font
@@ -52,6 +59,8 @@ function setup() {
     ma = atan(1);
   maxD=dist(0, 0, 200, 200);
 
+
+  
 }
 
 function draw() {
@@ -102,7 +111,7 @@ function draw() {
 
 
    //shape3D();
-   
+   perlin()
    //archimedeanSpiral();
    //cubewave();
    push();
