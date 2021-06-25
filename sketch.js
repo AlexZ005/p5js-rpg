@@ -114,6 +114,58 @@ function closuredTimer(enl, wait) {
     function timeIt() {
         enl.html(count);
         count++;
+
+
+        if (count <= 5){
+          //switch to scene 2 after 5 seconds
+            //osc.start();
+            playing = true;
+            osc.freq(freq, 0.1);
+            osc.amp(amp, 0.1);
+
+        }        
+        if (count > 5 && count <= 10){
+          //switch to scene 2 after 5 seconds
+          if (currentScene === 1) {
+            currentScene = 2;
+            console.log("Auto Play Scene #" + currentScene);
+            clear()
+
+            //osc.start();
+            playing = true;
+            osc.freq(freq, 0.1);
+            osc.amp(amp, 0.1);
+          }
+        }
+
+        if (count > 10 && count <= 15){
+          //switch to scene 2 after 5 seconds
+          if (currentScene === 2) {
+            currentScene = 3;
+            console.log("Auto Play Scene #" + currentScene);
+            clear()
+
+            //osc.start();
+            playing = true;
+            osc.freq(freq, 0.1);
+            osc.amp(amp, 0.1);
+          }
+        }
+
+        if (count > 15){
+          //switch to scene 2 after 5 seconds
+            
+            currentScene = 1;
+            console.log("Auto Play Scene #" + currentScene);
+            //clear()
+
+            //osc.start();
+            playing = true;
+            osc.freq(freq, 0.1);
+            osc.amp(amp, 0.1);
+            count = 0
+        }
+
     }
 
 }
@@ -123,12 +175,23 @@ function startTimer() {
         button.html("stop timer")
         interval = setInterval(timeIt, 500)
         buttonPressed = 1
+
+
+      // } else if (currentScene === 2) {
+      //     currentScene = 3;
+      //     clear()
+      // } else if (currentScene === 3) {
+      //     currentScene = 1;
+      //     clear()
+      // }
+
     } else {
         button.html("start timer")
         clearInterval(interval)
         timer.html("stopped")
         buttonPressed = 0
         interval = false
+        counter = 0
     }
 
 }
