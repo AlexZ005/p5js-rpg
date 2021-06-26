@@ -176,6 +176,7 @@ function circles() {
 }
 
 function flower() {
+    push();
     background(100, 2);
 
     translate(width / 2, height / 2);
@@ -187,6 +188,7 @@ function flower() {
         v.mult(random(0, 100));
         line(0, x, v.x, v.y);
     }
+    pop();
 }
 
 function lifeGauge() {

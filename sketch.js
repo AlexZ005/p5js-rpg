@@ -1,3 +1,10 @@
+// keep track of what scene you're on by MrCioffiBSSS https://editor.p5js.org/MrCioffiBSSS/sketches/AjaeTa9cE
+var currentScene;
+
+// checks if you clicked on the mouse (for resetting the scene)
+var mouse = false;
+
+
 let a;
 let b;
 
@@ -35,6 +42,13 @@ let counter = 0;
 var buttonPressed = 0;
 
 function setup() {
+
+
+    // draw the first scene at the start
+    drawScene1();
+
+    // let's you see what scene you're on with the "Console" (below)
+    console.log("Scene #" + currentScene);
 
     //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
@@ -125,7 +139,35 @@ function timeIt() {
 }
 
 function draw() {
-    background(51);
+
+
+    //checks first if our currentScene is supposed to be 1
+    if (currentScene === 1) {
+        // this will only be true one time, immediatly after a mouseClick event happens
+        if (mouse === true) {
+
+            // sets the variable of mouse back to false so it only triggers once
+            mouse = false;
+        }
+
+        // regardless, if the currentScene is "1", we will be drawing with the "drawScene1" function
+        drawScene1();
+    } else if (currentScene === 2) { // same thing as above, just with scene 2's stuff
+        if (mouse === true) {
+
+            mouse = false;
+        }
+
+        drawScene2();
+    }
+
+    // drawing the text on top of the image for what the current scene is
+    fill(0, 0, 0);
+    textSize(20);
+    text("Scene #" + currentScene, 0, 20);
+
+
+    //background(51);
     //translate(0, 0, detailX.value())
 
     //camera(mouseX, 0, 460, 0, 0, 0, 0, 1, 0);
@@ -176,6 +218,33 @@ function draw() {
         osc.amp(amp, 0.1);
     }
 }
+
+
+var drawScene1 = function() {
+    currentScene = 1;
+    flower(); //remove background for flower\
+    //background(200, 175, 175);
+
+};
+
+var drawScene2 = function() {
+    currentScene = 2;
+    background(150, 150, 175);
+
+
+};
+
+function mouseClicked() {
+    mouse = true;
+
+    if (currentScene === 1) {
+        currentScene = 2;
+    } else if (currentScene === 2) {
+        currentScene = 1;
+    }
+
+    console.log("Scene #" + currentScene);
+};
 
 function playOscillator() {
     // starting an oscillator on a user gesture will enable audio
