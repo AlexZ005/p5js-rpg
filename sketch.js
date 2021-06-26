@@ -136,6 +136,13 @@ function closuredTimer(enl, wait) {
         // sceneTimeValue1.html(sceneTime1.value())
         // sceneTimeValue2.html(sceneTime2.value())
 
+        //update duration for each item
+        for (i = 1; i<=items.length;i++){
+          items.update({id: i, duration: (items.get(i).end-items.get(i).start)/1000 })
+        }
+        var set1 = items.get(2).duration
+      
+
         if (count <= set1){
           //switch to scene 2 after 5 seconds
             //osc.start();

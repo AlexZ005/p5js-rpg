@@ -34,7 +34,7 @@
     var now2 = new Date(now.getTime()+ 2 * 1000);
     var now3 = new Date(now.getTime()+ 2 * 1000);
     var now4 = new Date(now.getTime()+ 4 * 1000);
-    var set1 = (now4-now)/1000
+    
       // Configuration for the Timeline
       var options = {
           width:  "100%",
@@ -47,10 +47,11 @@
         
         // Create a DataSet (allows two way data-binding)
         var items = new vis.DataSet([
-          {id: 1, content: 'flower', start: now1, end: now2 },
-          {id: 2, content: 'item 1', start: now3, end: now4 }
+          {id: 1, content: 'flower', start: now1, end: now2, duration: (now2-now1)/1000 },
+          {id: 2, content: 'item 1', start: now3, end: now4, duration: (now4-now3)/1000 },
+          {id: 3, content: 'item 1', start: now3, end: now4, duration: (now2-now1)/1000 },
         ]);
-      
+
         // Create a Timeline
       var timeline = new vis.Timeline(container, items, options);
     </script>
