@@ -140,6 +140,8 @@ function draw() {
     //   movers[i].display()
     // }
 
+    //remove background for flower
+    //flower();
 
     //random color circles
     //circles();

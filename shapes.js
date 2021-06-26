@@ -174,3 +174,17 @@ function circles() {
 
     }
 }
+
+function flower() {
+    background(100, 2);
+
+    translate(width / 2, height / 2);
+    strokeWeight(10);
+    stroke(255, 10);
+    for (x = 1; x < 20; x++) {
+        //  let v = createVector(random(-100,100),random(-100,100));
+        v = p5.Vector.random2D();
+        v.mult(random(0, 100));
+        line(0, x, v.x, v.y);
+    }
+}
