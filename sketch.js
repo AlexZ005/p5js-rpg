@@ -32,6 +32,7 @@ let moverCount = 50
 let timer;
 let counter = 0;
 
+var buttonPressed = 0;
 
 function setup() {
 
@@ -81,7 +82,40 @@ function setup() {
     }
 
     timer = createP('timer');
-    setInterval(timeIt, 500);
+    timer1 = createP('timer1');
+    timer2 = createP('timer2');
+
+    closuredTimer(timer1, 1000)
+    closuredTimer(timer2, 2000)
+
+    button = createButton("start");
+    button.mousePressed(startTimer)
+
+}
+
+function closuredTimer(enl, wait) {
+    var count = 0;
+    setInterval(timeIt, wait)
+
+    function timeIt() {
+        enl.html(count);
+        count++;
+    }
+
+}
+
+function startTimer() {
+    if (buttonPressed == 0) {
+        button.html("stop timer")
+        interval = setInterval(timeIt, 500)
+        buttonPressed = 1
+    } else {
+        button.html("start timer")
+        clearInterval(interval)
+        timer.html("stopped")
+        buttonPressed = 0
+        interval = false
+    }
 
 }
 
