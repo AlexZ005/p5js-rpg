@@ -59,12 +59,13 @@ function setup() {
     synth = new p5.Oscillator('sine');
 
     let angle = 0;
-    sizeSlider = createSlider(1, 1440, 1440);
-    sizeSlider.position(20, 20);
-    widthSlider = createSlider(1, 30, 1, .1);
-    widthSlider.position(20, 50);
-    angleSlider = createSlider(1, 65, 1, .1);
-    angleSlider.position(20, 80);
+    //Sliders
+    // sizeSlider = createSlider(1, 1440, 1440);
+    // sizeSlider.position(20, 20);
+    // widthSlider = createSlider(1, 30, 1, .1);
+    // widthSlider.position(20, 50);
+    // angleSlider = createSlider(1, 65, 1, .1);
+    // angleSlider.position(20, 80);
 
 
     ma = atan(1);
@@ -97,40 +98,17 @@ function draw() {
 
     delta++;
     // translate(-200, -200)
-    radar();
+    //radar();
 
-    let a = 0.0;
-    let inc = TWO_PI / 25.0;
-    for (let i = 0; i < 50; i++) {
-        line(i * 4, 50, i * 4, 50 + sin(a) * 40.0 * amp);
-        a = a + inc;
-    }
+    //    sinWave();
 
-    var lifeGauge;
-    var maxLifeGauge = 140;
-
-    push();
-    //https://graphicbeats.net/data/script.js
-    translate(100, 100)
-    fill(255);
-    var lifeSpacer = 270;
-    noStroke();
-    textSize(8);
-    text('L I F E', -maxLifeGauge / 1.3, lifeSpacer + 5);
-    rect(-80, lifeSpacer - 5, 1, 16);
-    rect(80, lifeSpacer - 5, 1, 16);
-    rect(-maxLifeGauge / 2, lifeSpacer, lifeGauge, 6);
-    stroke(255);
-    strokeWeight(1);
-    noFill();
-    rect(-maxLifeGauge / 2, lifeSpacer, maxLifeGauge, 6);
-    pop();
-
-
+    //lifeGauge();
     //shape3D();
     //perlin()
     //archimedeanSpiral();
     //cubewave();
+    //flower(); //remove background for flower
+    //circles();    //random color circles
 
     //Particle mouse
     // background("rgba(0, 0, 0, 0.05)")
@@ -140,71 +118,18 @@ function draw() {
     //   movers[i].display()
     // }
 
-    //remove background for flower
-    //flower();
+    // push();
+    // circle(freq, 100, 100);
+    // document.getElementsByClassName("score")[0].innerHTML = freq;
+    // pop();
 
-    //random color circles
-    //circles();
-
-    push();
-    circle(freq, 100, 100);
-    document.getElementsByClassName("score")[0].innerHTML = freq;
-    pop();
-
-
-    stroke(255);
-    fill('red');
-    textSize(6);
-    textFont(font);
-
-    push();
-    translate(width - 180, height - 150);
-    scale(3);
-    text('tap to play', 20, 20);
-    pop();
-
-    push();
-
-    translate(width - 180, height - 180);
-    scale(3);
-    text('freq: ' + freq, 20, 40);
-    pop();
-
-    push();
-    translate(width - 180, height - 210);
-    scale(3);
-    text('amp: ' + amp, 20, 60);
-    pop();
+    //fontHelpers();
 
     if (playing) {
         // smooth the transitions by 0.1 seconds
         osc.freq(freq, 0.1);
         osc.amp(amp, 0.1);
     }
-}
-
-function radar() {
-    push();
-    translate(30, 20);
-    line(0, 0, 30, 30);
-    line(0, 30, 30, 0);
-    pop();
-
-    push();
-    translate(45, 35);
-    rotate(delta / 100);
-    line(0, 0, 20, 0);
-    rotate(PI / 3);
-    line(0, 0, -20, 0);
-    rotate(PI / 3);
-    line(0, 0, 20, 0);
-    pop();
-
-    translate(15, 5);
-    noFill();
-    circle(30, 30, 20);
-    circle(30, 30, 30);
-    circle(30, 30, 40);
 }
 
 function playOscillator() {
