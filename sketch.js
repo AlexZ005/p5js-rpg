@@ -68,7 +68,7 @@ function setup() {
     delta = 0;
 
     detailX = createSlider(-401, 400, 1);
-    detailX.position(10, height + 5);
+    detailX.position(width+50, 125);
     detailX.style('width', '80px');
     createP(detailX.value());
 
@@ -100,10 +100,13 @@ function setup() {
     timer2 = createP('timer2');
 
     closuredTimer(timer1, 1000)
-    closuredTimer(timer2, 2000)
+//    closuredTimer(timer2, 2000)
 
     button = createButton("start");
     button.mousePressed(startTimer)
+
+
+
 
 }
 
@@ -111,12 +114,29 @@ function closuredTimer(enl, wait) {
     var count = 0;
     setInterval(timeIt, wait)
 
+    sceneTime = createSlider(1, 5, 1);
+    sceneTime.position(width+50, 35);
+    sceneTime.style('width', '80px');
+    // sceneTimeValue = createP("sceneTime.value()");
+
+    sceneTime1 = createSlider(1, 5, 2);
+    sceneTime1.position(width+50, 65);
+    sceneTime1.style('width', '80px');
+    // sceneTimeValue1 = createP("sceneTime1.value()");
+
+    sceneTime2 = createSlider(1, 5, 3);
+    sceneTime2.position(width+50, 95);
+    sceneTime2.style('width', '80px');
+    // sceneTimeValue2 = createP("sceneTime1.value()");
+
     function timeIt() {
         enl.html(count);
         count++;
+        // sceneTimeValue.html(sceneTime.value())
+        // sceneTimeValue1.html(sceneTime1.value())
+        // sceneTimeValue2.html(sceneTime2.value())
 
-
-        if (count <= 5){
+        if (count <= set1){
           //switch to scene 2 after 5 seconds
             //osc.start();
             playing = true;
@@ -124,7 +144,8 @@ function closuredTimer(enl, wait) {
             osc.amp(amp, 0.1);
 
         }        
-        if (count > 5 && count <= 10){
+        //console.log("set1 is " + set1)
+        if (count > set1){
           //switch to scene 2 after 5 seconds
           if (currentScene === 1) {
             currentScene = 2;
@@ -138,33 +159,33 @@ function closuredTimer(enl, wait) {
           }
         }
 
-        if (count > 10 && count <= 15){
-          //switch to scene 2 after 5 seconds
-          if (currentScene === 2) {
-            currentScene = 3;
-            console.log("Auto Play Scene #" + currentScene);
-            clear()
+        // if (count > sceneTime1.value() && count <= sceneTime2.value()){
+        //   //switch to scene 2 after 5 seconds
+        //   if (currentScene === 2) {
+        //     currentScene = 3;
+        //     console.log("Auto Play Scene #" + currentScene);
+        //     clear()
 
-            //osc.start();
-            playing = true;
-            osc.freq(freq, 0.1);
-            osc.amp(amp, 0.1);
-          }
-        }
+        //     //osc.start();
+        //     playing = true;
+        //     osc.freq(freq, 0.1);
+        //     osc.amp(amp, 0.1);
+        //   }
+        // }
 
-        if (count > 15){
-          //switch to scene 2 after 5 seconds
+        // if (count > 15){
+        //   //switch to scene 2 after 5 seconds
             
-            currentScene = 1;
-            console.log("Auto Play Scene #" + currentScene);
-            //clear()
+        //     currentScene = 1;
+        //     console.log("Auto Play Scene #" + currentScene);
+        //     //clear()
 
-            //osc.start();
-            playing = true;
-            osc.freq(freq, 0.1);
-            osc.amp(amp, 0.1);
-            count = 0
-        }
+        //     //osc.start();
+        //     playing = true;
+        //     osc.freq(freq, 0.1);
+        //     osc.amp(amp, 0.1);
+        //     count = 0
+        // }
 
     }
 
@@ -313,22 +334,22 @@ var drawScene3 = function() {
 
 };
 
-function mouseClicked() {
-    mouse = true;
+// function mouseClicked() {
+//     mouse = true;
 
-    if (currentScene === 1) {
-        currentScene = 2;
-        clear()
-    } else if (currentScene === 2) {
-        currentScene = 3;
-        clear()
-    } else if (currentScene === 3) {
-        currentScene = 1;
-        clear()
-    }
+//     if (currentScene === 1) {
+//         currentScene = 2;
+//         clear()
+//     } else if (currentScene === 2) {
+//         currentScene = 3;
+//         clear()
+//     } else if (currentScene === 3) {
+//         currentScene = 1;
+//         clear()
+//     }
 
-    console.log("Scene #" + currentScene);
-};
+//     console.log("Scene #" + currentScene);
+// };
 
 function playOscillator() {
     // starting an oscillator on a user gesture will enable audio

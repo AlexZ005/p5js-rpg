@@ -6,6 +6,119 @@
     <script src="shapes.js"></script>
     <script src="sketch.js"></script>
     <link rel="stylesheet" href="css/main.css">
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="submodules/chap-links-library/js/src/timeline/timeline.js"></script>
+    <link rel="stylesheet" type="text/css" href="submodules/chap-links-library/js/src/timeline/timeline.css">
+        
+<script type="text/javascript">
+    var timeline = undefined;
+    var data = undefined;
+
+    google.load("visualization", "1");
+
+    // Set callback to run when API is loaded
+    google.setOnLoadCallback(drawVisualization);
+
+    var now = new Date();
+    var now1 = new Date(now.getTime()+ 1 * 1000);
+    var now2 = new Date(now.getTime()+ 2 * 1000);
+    var now3 = new Date(now.getTime()+ 2 * 1000);
+    var now4 = new Date(now.getTime()+ 4 * 1000);
+
+    var set1 = (now4-now)/1000
+    console.log((now4-now)/1000)
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+        // Create and populate a data table.
+        data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'start');
+        data.addColumn('datetime', 'end');
+        data.addColumn('string', 'content');
+        data.addColumn('string', 'group');
+        data.addColumn('string', 'className');
+
+        // create some random data
+        var names = ["Main Track"];
+        for (var n = 0, len = names.length; n < len; n++) {
+            var name = names[n];
+
+            for (var i = 0; i < 1; i++) {
+                var availability = "Available"
+                var group = availability.toLowerCase();
+                var content = availability;
+                data.addRow([now1, now2, content, name, group]);
+                data.addRow([now3, now4, content, name, group]);
+            }
+        }
+
+//        data.addRow([start, end, content, name, group]);
+
+        // specify options
+        var options = {
+            width:  "100%",
+            height: "99%",
+            layout: "box",
+            axisOnTop: true,
+            eventMargin: 10,  // minimal margin between events
+            eventMarginAxis: 0, // minimal margin beteen events and the axis
+            editable: true,
+            showNavigation: true
+        };
+
+        // Instantiate our timeline object.
+        timeline = new links.Timeline(document.getElementById('mytimeline'), options);
+
+        // register event listeners
+        google.visualization.events.addListener(timeline, 'edit', onEdit);
+
+        // Draw our timeline with the created data and options
+        timeline.draw(data);
+
+        // Set visible range
+        //timeline.setVisibleChartRange(now.getTime(), now.getTime()+100000);
+    }
+
+    function getSelectedRow() {
+        var row = undefined;
+        var sel = timeline.getSelection();
+        if (sel.length) {
+            if (sel[0].row != undefined) {
+                row = sel[0].row;
+            }
+        }
+        return row;
+    }
+
+    function strip(html)
+    {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent||tmp.innerText;
+    }
+
+    // Make a callback function for the select event
+    var onEdit = function (event) {
+        var row = getSelectedRow();
+        var content = data.getValue(row, 2);
+        var availability = strip(content);
+        var newAvailability = prompt("Enter status\n\n" +
+                "Choose from: Available, Unavailable, Maybe", availability);
+        if (newAvailability != undefined) {
+            var newContent = newAvailability;
+            data.setValue(row, 2, newContent);
+            data.setValue(row, 4, newAvailability.toLowerCase());
+            timeline.draw(data);
+        }
+    };
+
+    var onNew = function () {
+        alert("Clicking this NEW button should open a popup window where " +
+                "a new status event can be created.\n\n" +
+                "Apperently this is not yet implemented...");
+    };
+
+</script>
 </head>
 
 <body>
@@ -13,6 +126,9 @@
         <div id="sketch-holder"></div>
         <div class="console">Console...</div>
     </main>
+
+    <div id="mytimeline"></div>
+    <a id="new" title="Add new status event" href="javascript:void(0);" onclick="onNew();">+</a>
 </body>
 
 </html>
