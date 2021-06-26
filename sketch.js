@@ -36,7 +36,7 @@ function setup() {
     font = loadFont('fonts/Roboto-Medium.ttf');
     if (mode == "") {
         let cnv = createCanvas(400, 400, P2D);
-
+        cnv.mousePressed(playOscillator);
     } else {
         //angleMode(DEGREES)
         let cnv = createCanvas(400, 400, WEBGL);
