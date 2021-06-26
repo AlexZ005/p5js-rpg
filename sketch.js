@@ -45,7 +45,7 @@ function setup() {
 
 
     // draw the first scene at the start
-    drawScene1();
+    drawScene4();
 
     // let's you see what scene you're on with the "Console" (below)
     console.log("Scene #" + currentScene);
@@ -99,7 +99,8 @@ function setup() {
     timer1 = createP('timer1');
     timer2 = createP('timer2');
 
-    closuredTimer(timer1, 1000)
+    //stop/start scene switching
+    //closuredTimer(timer1, 1000)
 //    closuredTimer(timer2, 2000)
 
     button = createButton("start");
@@ -275,7 +276,14 @@ function draw() {
         }
 
         drawScene3();
-    }
+    } else if (currentScene === 4) { // same thing as above, just with scene 2's stuff
+      if (mouse === true) {
+
+          mouse = false;
+      }
+
+      drawScene4();
+  }
 
     // drawing the text on top of the image for what the current scene is
     fill(0, 0, 0);
@@ -355,6 +363,16 @@ var drawScene3 = function() {
     //    background(150, 150, 175);
     background(51);
     archimedeanSpiral();
+
+
+};
+
+//adding sound sample scene
+var drawScene4 = function() {
+  currentScene = 4;
+  //    background(150, 150, 175);
+  background(51);
+  //archimedeanSpiral();
 
 
 };
