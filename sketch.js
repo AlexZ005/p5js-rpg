@@ -43,6 +43,15 @@ var buttonPressed = 0;
 
 function setup() {
 
+  env = new p5.Envelope();
+  env.setADSR(0.05,0.1, 0.5,1)
+  env.setRange(1.2,0)
+  wave = new p5.Oscillator();
+  wave.setType('sine')
+  wave.start();
+  wave.freq(500)
+  wave.amp(env)
+
 
     // draw the first scene at the start
     drawScene4();
@@ -54,12 +63,14 @@ function setup() {
     font = loadFont('fonts/Roboto-Medium.ttf');
     if (mode == "") {
         let cnv = createCanvas(400, 400, P2D);
-        cnv.mousePressed(playOscillator);
+        //cnv.mousePressed(playOscillator);
+        cnv.mousePressed(playADSR)
     } else {
         //angleMode(DEGREES)
         let cnv = createCanvas(400, 400, WEBGL);
-        cnv.mousePressed(playOscillator);
+        //cnv.mousePressed(playOscillator);
     }
+
 
     osc = new p5.Oscillator('sine');
 
@@ -375,6 +386,7 @@ var drawScene4 = function() {
   //archimedeanSpiral();
 
 
+
 };
 
 // function mouseClicked() {
@@ -406,4 +418,11 @@ function mouseReleased() {
     // ramp amplitude to 0 over 0.5 seconds
     osc.amp(0, 0.5);
     playing = false;
+}
+
+
+function playADSR() {
+  
+  env.play()
+  //playing = true;
 }
