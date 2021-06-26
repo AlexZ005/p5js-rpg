@@ -32,23 +32,23 @@ function shape3D() {
 //Nathan https://codepen.io/Twinbee/pen/gvMNJY
 function archimedeanSpiral() {
     let angle = 0;
-    let oldX = width/2;
-    let oldY = height/2;
+    let oldX = width / 2;
+    let oldY = height / 2;
     size = sizeSlider.value();
     spiralWidth = widthSlider.value();
     angle = angleSlider.value();
-    
-    oldX = width/2;
-    oldY = height/2;
-    
-    for (let i=0; i<size; i++) {
-        newAngle = (angle/10) * i;
-        x = (width/2) + (spiralWidth * newAngle) * Math.sin(newAngle);
-        y = (height/2) + (spiralWidth * newAngle) * Math.cos(newAngle);
-        
+
+    oldX = width / 2;
+    oldY = height / 2;
+
+    for (let i = 0; i < size; i++) {
+        newAngle = (angle / 10) * i;
+        x = (width / 2) + (spiralWidth * newAngle) * Math.sin(newAngle);
+        y = (height / 2) + (spiralWidth * newAngle) * Math.cos(newAngle);
+
         // stroke(randomColor()); // Random Color for each line segment
         // strokeWeight(randomWeight()); // Random Weight (1-5)
-        
+
         line(oldX, oldY, x, y);
         oldX = x;
         oldY = y;
@@ -63,102 +63,114 @@ function cubewave() {
     ambientLight(50, 50, 50, 0, -1, 0);
     directionalLight(250, 250, 250, 100, 0, 1);
     // pointLight(250, 250, 250, 100, 10, 500);
-    
+
     translate(0, 0, -50);
     rotateX(-QUARTER_PI);
     rotateY(ma);
-    
-    let offset = 0;
-    for (let z=0; z<height; z+=w){
-    
-      for (let x=0; x<width; x+=w){
-        push();
-        
-        let d = dist(x, z, width/2, height/2);
-        let offset = map(d, 0, maxD, -PI, PI);
-        let a = angle + offset;
-        let h = floor(map(sin(a), -1, 1, 100, 300));
-  
-        ambientMaterial(50, 150, 220);
-  
-        translate(x-(width/2), 0, z-(height/2));
-  
-        box(w-2, h, w-2);
-        pop();
-      }
-      offset+=.1;
-    }
-    
-    angle-=0.1;
-  }
 
-  //Perlin noise sample by Filippo Guida
-  //https://codepen.io/filippoguida/pen/oOrRWP
-  function perlin(){
-      //clear();
-      //noFill();
-      for(let i = 1; i < 80; i++) {
+    let offset = 0;
+    for (let z = 0; z < height; z += w) {
+
+        for (let x = 0; x < width; x += w) {
+            push();
+
+            let d = dist(x, z, width / 2, height / 2);
+            let offset = map(d, 0, maxD, -PI, PI);
+            let a = angle + offset;
+            let h = floor(map(sin(a), -1, 1, 100, 300));
+
+            ambientMaterial(50, 150, 220);
+
+            translate(x - (width / 2), 0, z - (height / 2));
+
+            box(w - 2, h, w - 2);
+            pop();
+        }
+        offset += .1;
+    }
+
+    angle -= 0.1;
+}
+
+//Perlin noise sample by Filippo Guida
+//https://codepen.io/filippoguida/pen/oOrRWP
+function perlin() {
+    //clear();
+    //noFill();
+    for (let i = 1; i < 80; i++) {
         strokeWeight(noise(t));
         bezier(
-          mouseX,
-          mouseY, //[height/2, i*8, 0, random(8)][sel1%4]
-          noise(t)*width,
-          noise(t*2)*height,
-          noise(t*3)*width,
-          noise(t + i*8)*height,
-          width,
-          [height/2, i*8, height, random(8)][sel2%4]
+            mouseX,
+            mouseY, //[height/2, i*8, 0, random(8)][sel1%4]
+            noise(t) * width,
+            noise(t * 2) * height,
+            noise(t * 3) * width,
+            noise(t + i * 8) * height,
+            width, [height / 2, i * 8, height, random(8)][sel2 % 4]
         )
-      }
-      
-      t += 0.02;
-      t1 += 0.08;
-      
-      if(frameCount % 200 == 0) 
-        sel1++;
-      
-      if(frameCount % 300 == 0) 
-        sel2++;
-    
-  }
+    }
 
-  //Chasers by Nathan
-  //https://codepen.io/Twinbee/pen/qBrWooB
-  class Mover {
+    t += 0.02;
+    t1 += 0.08;
+
+    if (frameCount % 200 == 0)
+        sel1++;
+
+    if (frameCount % 300 == 0)
+        sel2++;
+
+}
+
+//Chasers by Nathan
+//https://codepen.io/Twinbee/pen/qBrWooB
+class Mover {
     constructor() {
-      this.location = createVector(random(width), random(height))
-      this.velocity = createVector(0, 0)
-      this.acceleration = createVector(0, 0)
-      this.topSpeed = 5
+        this.location = createVector(random(width), random(height))
+        this.velocity = createVector(0, 0)
+        this.acceleration = createVector(0, 0)
+        this.topSpeed = 5
     }
-    
+
     update() {
-      let mouse = createVector(mouseX, mouseY)
-      
-      let direction = mouse.sub(this.location)
-  
-      direction.normalize()
-  
-      direction.mult(Math.random()/3)
-  
-      this.acceleration = direction
-  
-      this.velocity.add(this.acceleration)
-      this.velocity.limit(this.topSpeed)
-      this.location.add(this.velocity)
+        let mouse = createVector(mouseX, mouseY)
+
+        let direction = mouse.sub(this.location)
+
+        direction.normalize()
+
+        direction.mult(Math.random() / 3)
+
+        this.acceleration = direction
+
+        this.velocity.add(this.acceleration)
+        this.velocity.limit(this.topSpeed)
+        this.location.add(this.velocity)
     }
-    
+
     display() {
-      noStroke()
-      let blue = map(this.location.y, 400, 0, 0, 255)
-      fill(0, blue, 255)
-      rect(this.location.x, this.location.y, 2, 2)
+        noStroke()
+        let blue = map(this.location.y, 400, 0, 0, 255)
+        fill(0, blue, 255)
+        rect(this.location.x, this.location.y, 2, 2)
     }
-    
+
     checkEdges() {
-      if (this.location.x > width) this.location.x = 0
-      if (this.location.x < 0) this.location.x = width
-      if (this.location.y > height) this.location.y = 0
-      if (this.location.y < 0) this.location.y = height
+        if (this.location.x > width) this.location.x = 0
+        if (this.location.x < 0) this.location.x = width
+        if (this.location.y > height) this.location.y = 0
+        if (this.location.y < 0) this.location.y = height
     }
-  }
+}
+
+function circles() {
+
+    translate(5, 5)
+    for (x = 0; x <= mouseX; x += 7) {
+        for (y = 0; y <= mouseY; y += 7) {
+
+            fill(color(random(255), random(255), random(255)))
+            ellipse(x, y, 5, 5);
+        }
+
+    }
+}

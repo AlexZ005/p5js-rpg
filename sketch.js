@@ -7,40 +7,41 @@ let osc, playing, freq, amp;
 
 let mode = "";
 
-    let angle = 0.1,
-    w=24,
+let angle = 0.1,
+    w = 24,
     ma,
     maxD;
 
 
-      //perlin
-  let t = 0;
-  let t1= 0;
-  let sel1 = 0, sel2 = 0;
+//perlin
+let t = 0;
+let t1 = 0;
+let sel1 = 0,
+    sel2 = 0;
 
-  //Particle movers
-  let c = {
+//Particle movers
+let c = {
     "width": 400,
     "height": 400
-  }
-  let cx = c.width/2,
-  cy = c.height/2
-  let movers = []
-  let moverCount = 50
+}
+let cx = c.width / 2,
+    cy = c.height / 2
+let movers = []
+let moverCount = 50
 
 
 function setup() {
-    
-        //setup font
+
+    //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
-    if (mode == ""){
-      let cnv = createCanvas(400, 400, P2D);
-      
+    if (mode == "") {
+        let cnv = createCanvas(400, 400, P2D);
+
     } else {
-    //angleMode(DEGREES)
-    let cnv = createCanvas(400, 400, WEBGL);
-    cnv.mousePressed(playOscillator);
-  }
+        //angleMode(DEGREES)
+        let cnv = createCanvas(400, 400, WEBGL);
+        cnv.mousePressed(playOscillator);
+    }
 
     osc = new p5.Oscillator('sine');
 
@@ -52,7 +53,7 @@ function setup() {
     detailX.position(10, height + 5);
     detailX.style('width', '80px');
     createP(detailX.value());
-    
+
     createP("test").addClass("score")
 
     synth = new p5.Oscillator('sine');
@@ -67,14 +68,16 @@ function setup() {
 
 
     ma = atan(1);
-  maxD=dist(0, 0, 200, 200);
+    maxD = dist(0, 0, 200, 200);
 
 
-  angleMode(DEGREES)
-  for (let i=0; i<moverCount; i++) {
-  movers.push(new Mover)
-  }
-  
+    angleMode(DEGREES)
+    for (let i = 0; i < moverCount; i++) {
+        movers.push(new Mover)
+    }
+
+
+
 }
 
 function draw() {
@@ -93,7 +96,7 @@ function draw() {
     amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
     delta++;
-   // translate(-200, -200)
+    // translate(-200, -200)
     radar();
 
     let a = 0.0;
@@ -124,23 +127,27 @@ function draw() {
     pop();
 
 
-   //shape3D();
-   //perlin()
-   //archimedeanSpiral();
-   //cubewave();
+    //shape3D();
+    //perlin()
+    //archimedeanSpiral();
+    //cubewave();
 
     //Particle mouse
-      // background("rgba(0, 0, 0, 0.05)")
-      // for (let i=0; i<moverCount; i++) {
-      //   movers[i].update()
-      //   movers[i].checkEdges()
-      //   movers[i].display()
-      // }
+    // background("rgba(0, 0, 0, 0.05)")
+    // for (let i=0; i<moverCount; i++) {
+    //   movers[i].update()
+    //   movers[i].checkEdges()
+    //   movers[i].display()
+    // }
 
-   push();
-   circle(freq,100,100);
-   document.getElementsByClassName("score")[0].innerHTML = freq;   
-   pop();
+
+    //random color circles
+    //circles();
+
+    push();
+    circle(freq, 100, 100);
+    document.getElementsByClassName("score")[0].innerHTML = freq;
+    pop();
 
 
     stroke(255);
