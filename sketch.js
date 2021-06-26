@@ -29,6 +29,9 @@ let cx = c.width / 2,
 let movers = []
 let moverCount = 50
 
+let timer;
+let counter = 0;
+
 
 function setup() {
 
@@ -77,8 +80,14 @@ function setup() {
         movers.push(new Mover)
     }
 
+    timer = createP('timer');
+    setInterval(timeIt, 500);
 
+}
 
+function timeIt() {
+    timer.html(counter);
+    counter++;
 }
 
 function draw() {
@@ -107,6 +116,8 @@ function draw() {
     //perlin()
     //archimedeanSpiral();
     //cubewave();
+
+
     //flower(); //remove background for flower
     //circles();    //random color circles
 
