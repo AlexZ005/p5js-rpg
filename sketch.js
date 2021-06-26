@@ -135,12 +135,17 @@ function closuredTimer(enl, wait) {
         // sceneTimeValue.html(sceneTime.value())
         // sceneTimeValue1.html(sceneTime1.value())
         // sceneTimeValue2.html(sceneTime2.value())
-
+        currentTime = timeline.getCurrentTime()
+        //console.log(options.end)
+        if (currentTime>=options.end){
+          //console.log("reached end")
+          timeline.setCurrentTime(options.start)
+        }
         //update duration for each item
         for (i = 1; i<=items.length;i++){
           items.update({id: i, duration: (items.get(i).end-items.get(i).start)/1000 })
           //1 get current time
-          currentTime = new Date();
+          
           //2 check if current item is the one which should play
           if (items.get(i).start <= currentTime && items.get(i).end >= currentTime)
           {
@@ -151,7 +156,7 @@ function closuredTimer(enl, wait) {
             currentScene = items.get(i).id
           }
 
-          }
+          } 
         }
       //  var set1 = items.get(2).duration
       
