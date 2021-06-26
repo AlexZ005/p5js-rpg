@@ -78,12 +78,12 @@ function setup() {
 
     let angle = 0;
     //Sliders
-    // sizeSlider = createSlider(1, 1440, 1440);
-    // sizeSlider.position(20, 20);
-    // widthSlider = createSlider(1, 30, 1, .1);
-    // widthSlider.position(20, 50);
-    // angleSlider = createSlider(1, 65, 1, .1);
-    // angleSlider.position(20, 80);
+    sizeSlider = createSlider(1, 1440, 1440);
+    sizeSlider.position(20, 20);
+    widthSlider = createSlider(1, 30, 1, .1);
+    widthSlider.position(20, 50);
+    angleSlider = createSlider(1, 65, 1, .1);
+    angleSlider.position(20, 80);
 
 
     ma = atan(1);
@@ -159,6 +159,13 @@ function draw() {
         }
 
         drawScene2();
+    } else if (currentScene === 3) { // same thing as above, just with scene 2's stuff
+        if (mouse === true) {
+
+            mouse = false;
+        }
+
+        drawScene3();
     }
 
     // drawing the text on top of the image for what the current scene is
@@ -189,12 +196,11 @@ function draw() {
 
     //lifeGauge();
     //shape3D();
-    //perlin()
-    //archimedeanSpiral();
+
+    //
     //cubewave();
 
 
-    //flower(); //remove background for flower
     //circles();    //random color circles
 
     //Particle mouse
@@ -229,7 +235,17 @@ var drawScene1 = function() {
 
 var drawScene2 = function() {
     currentScene = 2;
-    background(150, 150, 175);
+    //    background(150, 150, 175);
+    background(51);
+    perlin()
+
+
+};
+var drawScene3 = function() {
+    currentScene = 3;
+    //    background(150, 150, 175);
+    background(51);
+    archimedeanSpiral();
 
 
 };
@@ -239,8 +255,13 @@ function mouseClicked() {
 
     if (currentScene === 1) {
         currentScene = 2;
+        clear()
     } else if (currentScene === 2) {
+        currentScene = 3;
+        clear()
+    } else if (currentScene === 3) {
         currentScene = 1;
+        clear()
     }
 
     console.log("Scene #" + currentScene);
