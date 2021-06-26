@@ -139,32 +139,45 @@ function closuredTimer(enl, wait) {
         //update duration for each item
         for (i = 1; i<=items.length;i++){
           items.update({id: i, duration: (items.get(i).end-items.get(i).start)/1000 })
-        }
-        var set1 = items.get(2).duration
-      
+          //1 get current time
+          currentTime = new Date();
+          //2 check if current item is the one which should play
+          if (items.get(i).start <= currentTime && items.get(i).end >= currentTime)
+          {
+            //console.log("within time" + items.get(i).id)
+            //3 check if correct one plays
+            if (currentScene != items.get(i).id){
+           //4 switch to correct one
+            currentScene = items.get(i).id
+          }
 
-        if (count <= set1){
-          //switch to scene 2 after 5 seconds
-            //osc.start();
-            playing = true;
-            osc.freq(freq, 0.1);
-            osc.amp(amp, 0.1);
-
-        }        
-        //console.log("set1 is " + set1)
-        if (count > set1){
-          //switch to scene 2 after 5 seconds
-          if (currentScene === 1) {
-            currentScene = 2;
-            console.log("Auto Play Scene #" + currentScene);
-            clear()
-
-            //osc.start();
-            playing = true;
-            osc.freq(freq, 0.1);
-            osc.amp(amp, 0.1);
           }
         }
+      //  var set1 = items.get(2).duration
+      
+
+        // if (count <= set1){
+        //   //switch to scene 2 after 5 seconds
+        //     //osc.start();
+        //     playing = true;
+        //     osc.freq(freq, 0.1);
+        //     osc.amp(amp, 0.1);
+
+        // }        
+        // //console.log("set1 is " + set1)
+        // if (count > set1){
+        //   //switch to scene 2 after 5 seconds
+        //   if (currentScene === 1) {
+        //     currentScene = 2;
+        //     console.log("Auto Play Scene #" + currentScene);
+        //     clear()
+
+        //     //osc.start();
+        //     playing = true;
+        //     osc.freq(freq, 0.1);
+        //     osc.amp(amp, 0.1);
+        //   }
+        // }
 
         // if (count > sceneTime1.value() && count <= sceneTime2.value()){
         //   //switch to scene 2 after 5 seconds
