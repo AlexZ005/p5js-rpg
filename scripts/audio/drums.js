@@ -96,6 +96,10 @@ Tone.Buffer.on('load', play);
 
   //createCanvas(640,480);
   slider = createSlider(0, 255, 120);
+
+  if (debug == "off") {
+      slider.hide()
+  }
 //  slider.position(50,430);
   slider.style('width', '520px');
 }

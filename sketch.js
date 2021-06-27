@@ -1,6 +1,6 @@
 // keep track of what scene you're on by MrCioffiBSSS https://editor.p5js.org/MrCioffiBSSS/sketches/AjaeTa9cE
 var currentScene;
-
+var debug = "off"
 // checks if you clicked on the mouse (for resetting the scene)
 var mouse = false;
 
@@ -46,7 +46,7 @@ function setup() {
  // setupPiano();
  // setupChords();
   // setupSynth();
-  //setupDrums();
+  setupDrums();
 
   // env = new p5.Envelope();
   // env.setADSR(0.05,0.1, 0.5,1)
@@ -62,8 +62,10 @@ function setup() {
     //drawScene4();
 
     // let's you see what scene you're on with the "Console" (below)
+    
+  if (debug == "on"){
     console.log("Scene #" + currentScene);
-
+  }
     //setup font
     font = loadFont('fonts/Roboto-Medium.ttf');
     if (mode == "") {
@@ -86,21 +88,20 @@ function setup() {
     detailX = createSlider(-401, 400, 1);
     detailX.position(width+50, 125);
     detailX.style('width', '80px');
-    createP(detailX.value());
+    detailP = createP(detailX.value());
 
-    createP("test").addClass("score")
+    scoreP = createP("test").addClass("score")
 
     synth = new p5.Oscillator('sine');
 
     let angle = 0;
     //Sliders
     sizeSlider = createSlider(1, 1440, 1440);
-    sizeSlider.position(20, 20);
     widthSlider = createSlider(1, 30, 1, .1);
-    widthSlider.position(20, 50);
     angleSlider = createSlider(1, 65, 1, .1);
+    sizeSlider.position(20, 20);
+    widthSlider.position(20, 50);
     angleSlider.position(20, 80);
-
 
     ma = atan(1);
     maxD = dist(0, 0, 200, 200);
@@ -121,6 +122,19 @@ function setup() {
 
     button = createButton("start");
     button.mousePressed(startTimer)
+
+    if (debug == "off"){
+      detailX.hide()
+      sizeSlider.hide()
+      widthSlider.hide()
+      angleSlider.hide()
+      timer.hide()
+      timer1.hide()
+      timer2.hide()
+      button.hide()
+      scoreP.hide()
+      detailP.hide()
+  }
 
 
 setupDrums()
@@ -145,6 +159,12 @@ function closuredTimer(enl, wait) {
     sceneTime2.position(width+50, 95);
     sceneTime2.style('width', '80px');
     // sceneTimeValue2 = createP("sceneTime1.value()");
+
+    if (debug="off"){
+      sceneTime.hide()
+      sceneTime1.hide()
+      sceneTime2.hide()
+    }
 
     function timeIt() {
         enl.html(count);
@@ -304,7 +324,9 @@ function draw() {
     // drawing the text on top of the image for what the current scene is
     fill(0, 0, 0);
     textSize(20);
-    text("Scene #" + currentScene, 0, 20);
+    if (debug == "on"){
+      text("Scene #" + currentScene, 0, 20);
+    }
 
 
     //background(51);
@@ -361,7 +383,7 @@ function draw() {
 
 var drawScene1 = function() {
     currentScene = 1;
-    flower(); //remove background for flower\
+    perlin() //remove background for flower\
     //background(200, 175, 175);
 
 };
@@ -378,7 +400,7 @@ var drawScene3 = function() {
     currentScene = 3;
     //    background(150, 150, 175);
     background(51);
-    archimedeanSpiral();
+    perlin()
 
 
 };
@@ -410,7 +432,7 @@ var drawScene4 = function() {
 //  drawPiano();
 //drawChords()
 // drawSynth()
-drawDrums()
+perlin()
 };
 
 // function mouseClicked() {

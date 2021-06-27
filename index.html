@@ -25,7 +25,7 @@
 <body>
     <main>
         <div id="sketch-holder"></div>
-        <div class="console">Console...</div>
+        <!-- <div class="console">Console...</div> -->
     </main>
 
     <div id="visualization"></div>
@@ -62,6 +62,14 @@
 
         // Create a Timeline
       var timeline = new vis.Timeline(container, items, options);
+      //timeline.destroy()
+
+      if (debug == "off") {
+      document.getElementsByClassName('vis-loading-screen')[0].style.display = 'none';
+      document.getElementsByClassName('vis-timeline vis-bottom vis-ltr')[0].style.display = 'none';
+      //document.querySelector("#visualization").style.visibility = 'hidden';
+      document.getElementById('visualization').style.display = 'none';      
+    }
     </script>
 </body>
 
