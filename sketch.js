@@ -43,8 +43,9 @@ var buttonPressed = 0;
 
 function setup() {
 
-  setupPiano();
-  setupChords();
+ // setupPiano();
+ // setupChords();
+  setupSynth();
 
   env = new p5.Envelope();
   env.setADSR(0.05,0.1, 0.5,1)
@@ -67,7 +68,7 @@ function setup() {
     if (mode == "") {
         let cnv = createCanvas(400, 400, P2D);
         //cnv.mousePressed(playOscillator);
-        cnv.mousePressed(playADSR)
+        //cnv.mousePressed(playADSR)
     } else {
         //angleMode(DEGREES)
         let cnv = createCanvas(400, 400, WEBGL);
@@ -388,25 +389,26 @@ var drawScene4 = function() {
   background(51);
   //archimedeanSpiral();
 
-  push();
-  line(100,200,150,150)
-  line(150,150,200,170)
-  line(200,170,250,170)
-  line(250,170,250,200)
-  pop();
+  // push();
+  // line(100,200,150,150)
+  // line(150,150,200,170)
+  // line(200,170,250,170)
+  // line(250,170,250,200)
+  // pop();
 
-  push();
-  noFill();
-  beginShape();
-  vertex(30, 20);
-  vertex(85, 20);
-  vertex(85, 75);
-  vertex(30, 75);
-  endShape();
-  pop();
+  // push();
+  // noFill();
+  // beginShape();
+  // vertex(30, 20);
+  // vertex(85, 20);
+  // vertex(85, 75);
+  // vertex(30, 75);
+  // endShape();
+  // pop();
 
-  drawPiano();
+//  drawPiano();
 //drawChords()
+drawSynth()
 };
 
 // function mouseClicked() {
