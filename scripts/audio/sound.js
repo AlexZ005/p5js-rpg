@@ -41,7 +41,7 @@ function SoundMaker(freq1, wavetype) {
     this.wavetype = wavetype;
   
     // create an envelope to structure each note
-    this.env = new p5.Env();
+    this.env = new p5.Envelope();
     this.env.setExp(true);
     this.env.setADSR(this.attackTime, this.decayTime, this.susPercent, this.releaseTime);
     this.env.setRange(this.attackLevel, this.releaseLevel);

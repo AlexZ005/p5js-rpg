@@ -405,8 +405,8 @@ var drawScene4 = function() {
   endShape();
   pop();
 
-//  drawPiano();
-drawChords()
+  drawPiano();
+//drawChords()
 };
 
 // function mouseClicked() {
