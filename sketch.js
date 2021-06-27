@@ -46,20 +46,20 @@ function setup() {
  // setupPiano();
  // setupChords();
   // setupSynth();
-  setupDrums();
+  //setupDrums();
 
-  env = new p5.Envelope();
-  env.setADSR(0.05,0.1, 0.5,1)
-  env.setRange(1.2,0)
-  wave = new p5.Oscillator();
-  wave.setType('sine')
-  wave.start();
-  wave.freq(500)
-  wave.amp(env)
+  // env = new p5.Envelope();
+  // env.setADSR(0.05,0.1, 0.5,1)
+  // env.setRange(1.2,0)
+  // wave = new p5.Oscillator();
+  // wave.setType('sine')
+  // wave.start();
+  // wave.freq(500)
+  // wave.amp(env)
 
 
     // draw the first scene at the start
-    drawScene4();
+    //drawScene4();
 
     // let's you see what scene you're on with the "Console" (below)
     console.log("Scene #" + currentScene);
@@ -77,7 +77,7 @@ function setup() {
     }
 
 
-    osc = new p5.Oscillator('sine');
+    //osc = new p5.Oscillator('sine');
 
     a = 5;
     b = 2;
@@ -116,14 +116,14 @@ function setup() {
     timer2 = createP('timer2');
 
     //stop/start scene switching
-    //closuredTimer(timer1, 1000)
+    closuredTimer(timer1, 1000)
 //    closuredTimer(timer2, 2000)
 
     button = createButton("start");
     button.mousePressed(startTimer)
 
 
-
+setupDrums()
 
 }
 
@@ -178,56 +178,56 @@ function closuredTimer(enl, wait) {
       //  var set1 = items.get(2).duration
       
 
-        // if (count <= set1){
-        //   //switch to scene 2 after 5 seconds
-        //     //osc.start();
-        //     playing = true;
-        //     osc.freq(freq, 0.1);
-        //     osc.amp(amp, 0.1);
+      //   if (count <= set1){
+      //     //switch to scene 2 after 5 seconds
+      //       osc.start();
+      //       playing = true;
+      //       osc.freq(freq, 0.1);
+      //       osc.amp(amp, 0.1);
 
-        // }        
-        // //console.log("set1 is " + set1)
-        // if (count > set1){
-        //   //switch to scene 2 after 5 seconds
-        //   if (currentScene === 1) {
-        //     currentScene = 2;
-        //     console.log("Auto Play Scene #" + currentScene);
-        //     clear()
+      //   }        
+      //   //console.log("set1 is " + set1)
+      //   if (count > set1){
+      //     //switch to scene 2 after 5 seconds
+      //     if (currentScene === 1) {
+      //       currentScene = 2;
+      //       console.log("Auto Play Scene #" + currentScene);
+      //       clear()
 
-        //     //osc.start();
-        //     playing = true;
-        //     osc.freq(freq, 0.1);
-        //     osc.amp(amp, 0.1);
-        //   }
-        // }
+      //       //osc.start();
+      //       playing = true;
+      //       osc.freq(freq, 0.1);
+      //       osc.amp(amp, 0.1);
+      //     }
+      //   }
 
-        // if (count > sceneTime1.value() && count <= sceneTime2.value()){
-        //   //switch to scene 2 after 5 seconds
-        //   if (currentScene === 2) {
-        //     currentScene = 3;
-        //     console.log("Auto Play Scene #" + currentScene);
-        //     clear()
+      //   if (count > sceneTime1.value() && count <= sceneTime2.value()){
+      //     //switch to scene 2 after 5 seconds
+      //     if (currentScene === 2) {
+      //       currentScene = 3;
+      //       console.log("Auto Play Scene #" + currentScene);
+      //       clear()
 
-        //     //osc.start();
-        //     playing = true;
-        //     osc.freq(freq, 0.1);
-        //     osc.amp(amp, 0.1);
-        //   }
-        // }
+      //       //osc.start();
+      //       playing = true;
+      //       osc.freq(freq, 0.1);
+      //       osc.amp(amp, 0.1);
+      //     }
+      //   }
 
-        // if (count > 15){
-        //   //switch to scene 2 after 5 seconds
+      //   if (count > 15){
+      //     //switch to scene 2 after 5 seconds
             
-        //     currentScene = 1;
-        //     console.log("Auto Play Scene #" + currentScene);
-        //     //clear()
+      //       currentScene = 1;
+      //       console.log("Auto Play Scene #" + currentScene);
+      //       //clear()
 
-        //     //osc.start();
-        //     playing = true;
-        //     osc.freq(freq, 0.1);
-        //     osc.amp(amp, 0.1);
-        //     count = 0
-        // }
+      //       //osc.start();
+      //       playing = true;
+      //       osc.freq(freq, 0.1);
+      //       osc.amp(amp, 0.1);
+      //       count = 0
+      //   }
 
     }
 
@@ -318,8 +318,8 @@ function draw() {
 
     stroke(255, 100);
 
-    freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
-    amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
+    // freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
+    // amp = constrain(map(mouseY, height, 0, 0, 1), 0, 1);
 
     delta++;
     // translate(-200, -200)
@@ -353,8 +353,8 @@ function draw() {
 
     if (playing) {
         // smooth the transitions by 0.1 seconds
-        osc.freq(freq, 0.1);
-        osc.amp(amp, 0.1);
+        //osc.freq(freq, 0.1);
+        //osc.amp(amp, 0.1);
     }
 }
 

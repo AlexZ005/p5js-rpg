@@ -240,16 +240,16 @@ function fontHelpers() {
 
     push();
 
-    translate(width - 180, height - 180);
-    scale(3);
-    text('freq: ' + freq, 20, 40);
-    pop();
+    // translate(width - 180, height - 180);
+    // scale(3);
+    // text('freq: ' + freq, 20, 40);
+    // pop();
 
-    push();
-    translate(width - 180, height - 210);
-    scale(3);
-    text('amp: ' + amp, 20, 60);
-    pop();
+    // push();
+    // translate(width - 180, height - 210);
+    // scale(3);
+    // text('amp: ' + amp, 20, 60);
+    // pop();
 
 }
 
