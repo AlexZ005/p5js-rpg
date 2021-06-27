@@ -43,6 +43,8 @@ var buttonPressed = 0;
 
 function setup() {
 
+  setupPiano();
+
   env = new p5.Envelope();
   env.setADSR(0.05,0.1, 0.5,1)
   env.setRange(1.2,0)
@@ -385,8 +387,24 @@ var drawScene4 = function() {
   background(51);
   //archimedeanSpiral();
 
+  push();
+  line(100,200,150,150)
+  line(150,150,200,170)
+  line(200,170,250,170)
+  line(250,170,250,200)
+  pop();
 
+  push();
+  noFill();
+  beginShape();
+  vertex(30, 20);
+  vertex(85, 20);
+  vertex(85, 75);
+  vertex(30, 75);
+  endShape();
+  pop();
 
+ drawPiano();
 };
 
 // function mouseClicked() {
@@ -414,11 +432,13 @@ function playOscillator() {
     playing = true;
 }
 
-function mouseReleased() {
-    // ramp amplitude to 0 over 0.5 seconds
-    osc.amp(0, 0.5);
-    playing = false;
-}
+
+
+// function mouseReleased() {
+//     // ramp amplitude to 0 over 0.5 seconds
+//     osc.amp(0, 0.5);
+//     playing = false;
+// }
 
 
 function playADSR() {
@@ -426,3 +446,7 @@ function playADSR() {
   env.play()
   //playing = true;
 }
+
+
+
+
