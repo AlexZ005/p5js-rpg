@@ -44,6 +44,7 @@ var buttonPressed = 0;
 function setup() {
 
   setupPiano();
+  setupChords();
 
   env = new p5.Envelope();
   env.setADSR(0.05,0.1, 0.5,1)
@@ -404,7 +405,8 @@ var drawScene4 = function() {
   endShape();
   pop();
 
- drawPiano();
+//  drawPiano();
+drawChords()
 };
 
 // function mouseClicked() {
