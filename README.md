@@ -2,8 +2,9 @@
 This is another try of implementing a game using P5JS.  
 Collection of scripts from different sources joined together.  
 The game logic heavy relates to vis-timeline library.  
-  # Demo could be seen using this link: https://alexz005.github.io/p5js-rpg  
-Code snippets/ideas used for reference:  
+  # Demo could be seen using this link:
+    https://alexz005.github.io/p5js-rpg  
+# Code snippets/ideas used for reference:  
   
 Menu: https://www.youtube.com/watch?v=TgHhEzKlLb4&ab_channel=Veritasium  
   
