@@ -1,6 +1,6 @@
 // keep track of what scene you're on by MrCioffiBSSS https://editor.p5js.org/MrCioffiBSSS/sketches/AjaeTa9cE
 var currentScene;
-var debug = "off"
+var debug = "on"
 // checks if you clicked on the mouse (for resetting the scene)
 var mouse = false;
 
@@ -42,11 +42,17 @@ let counter = 0;
 var buttonPressed = 0;
 
 function setup() {
+  setupMenu();
+  getAudioContext().suspend();
 
+  let mySynth = new p5.MonoSynth();
+
+  // This won't play until the context has resumed
+  mySynth.play('A6');
  // setupPiano();
  // setupChords();
   // setupSynth();
-  setupDrums();
+  // setupDrums();
 
   // env = new p5.Envelope();
   // env.setADSR(0.05,0.1, 0.5,1)
@@ -79,7 +85,7 @@ function setup() {
     }
 
 
-    //osc = new p5.Oscillator('sine');
+//    osc = new p5.Oscillator('sine');
 
     a = 5;
     b = 2;
@@ -92,7 +98,7 @@ function setup() {
 
     scoreP = createP("test").addClass("score")
 
-    synth = new p5.Oscillator('sine');
+//    synth = new p5.Oscillator('sine');
 
     let angle = 0;
     //Sliders
@@ -137,7 +143,7 @@ function setup() {
   }
 
 
-setupDrums()
+// setupDrums()
 
 }
 
@@ -383,7 +389,7 @@ function draw() {
 
 var drawScene1 = function() {
     currentScene = 1;
-    perlin() //remove background for flower\
+    drawMenu() //remove background for flower\
     //background(200, 175, 175);
 
 };
@@ -392,7 +398,7 @@ var drawScene2 = function() {
     currentScene = 2;
     //    background(150, 150, 175);
     background(51);
-    perlin()
+    flower()
 
 
 };
@@ -400,7 +406,7 @@ var drawScene3 = function() {
     currentScene = 3;
     //    background(150, 150, 175);
     background(51);
-    perlin()
+    circles()
 
 
 };
@@ -412,27 +418,27 @@ var drawScene4 = function() {
   background(51);
   //archimedeanSpiral();
 
-  // push();
-  // line(100,200,150,150)
-  // line(150,150,200,170)
-  // line(200,170,250,170)
-  // line(250,170,250,200)
-  // pop();
+  push();
+  line(100,200,150,150)
+  line(150,150,200,170)
+  line(200,170,250,170)
+  line(250,170,250,200)
+  pop();
 
-  // push();
-  // noFill();
-  // beginShape();
-  // vertex(30, 20);
-  // vertex(85, 20);
-  // vertex(85, 75);
-  // vertex(30, 75);
-  // endShape();
-  // pop();
+  push();
+  noFill();
+  beginShape();
+  vertex(30, 20);
+  vertex(85, 20);
+  vertex(85, 75);
+  vertex(30, 75);
+  endShape();
+  pop();
 
 //  drawPiano();
 //drawChords()
 // drawSynth()
-perlin()
+// perlin()
 };
 
 // function mouseClicked() {
@@ -477,4 +483,6 @@ function playADSR() {
 
 
 
-
+function mousePressed() {
+  userStartAudio();
+}
