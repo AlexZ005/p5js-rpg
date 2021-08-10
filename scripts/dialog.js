@@ -44,13 +44,13 @@ class Sprite {
     }
   }
 }
-function preload() {
+function preloadDialog() {
   spritedata = loadJSON('assets/5.chap-nod.json');
   spritesheet = loadImage('assets/5.chap-nod.png');
 }
 
-function setupMenu() {
-  createCanvas(400, 400);
+function setupDialog() {
+  //createCanvas(400, 400);
   let frames = separateObject(spritedata.frames);
   console.log(separateObject(frames).length)
   for (let i = 0; i < frames.length; i++) {
@@ -65,8 +65,8 @@ horse = new Sprite(animation, 60, 285, random(0.1, 0.4));
   //   horses[i] = new Sprite(animation, 0, i * 75, random(0.1, 0.4));
   // }
 }
-function drawMenu() {
-  background(100);
+function drawDialog() {
+  //background(100);
   var dialogue = ["Attack","Recover","Run"];
   Say(dialogue[0]);
   Option(dialogue,2);

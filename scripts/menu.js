@@ -1,12 +1,9 @@
-//original from https://editor.p5js.org/kura/sketches/nso_ojdTw
-//image generated with https://make.girls.moe/#/
-//gif and json made using Aseprite Export
-let spritesheet;
-let spritedata;
+//reference https://www.youtube.com/watch?v=TgHhEzKlLb4&ab_channel=Veritasium
 let menumode;
 
 function setupMenu() {
   menumode = 0;  
+
 
   // for (let i = 0; i < 5; i++) {
   //   horses[i] = new Sprite(animation, 0, i * 75, random(0.1, 0.4));
@@ -45,11 +42,14 @@ if (menumode === 100){
 function keyPressed(){
   if (keyCode == UP_ARROW){
     menumode -= 1;
+    mySynth.play('A6');
   }
   if (keyCode == DOWN_ARROW){
     menumode += 1;
+    mySynth.play('A6');
   }
   if (keyCode == ENTER){
+    userStartAudio();
     start(menumode)
   }
 }
@@ -60,6 +60,9 @@ function start(id){
   }
   if (id === 1){
     //start game
+    console.log(items.get(1).content)
+    options.start = now3;
+    options.end = now3;
   }
   if (id === 2){
     //show options

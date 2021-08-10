@@ -5,8 +5,8 @@ var debug = "on"
 var mouse = false;
 
 
-let a;
-let b;
+// let a;
+// let b;
 
 let delta;
 
@@ -40,13 +40,19 @@ let timer;
 let counter = 0;
 
 var buttonPressed = 0;
+let mySynth = new p5.MonoSynth();
+
+function preload(){
+  preloadSpells();
+  preloadDialog();
+}
 
 function setup() {
-  setupMenu();
   getAudioContext().suspend();
-
-  let mySynth = new p5.MonoSynth();
-
+  setupSpells();
+  setupMenu();
+  setupDialog();
+  setupPlayer();
   // This won't play until the context has resumed
   mySynth.play('A6');
  // setupPiano();
@@ -87,8 +93,8 @@ function setup() {
 
 //    osc = new p5.Oscillator('sine');
 
-    a = 5;
-    b = 2;
+    // a = 5;
+    // b = 2;
     delta = 0;
 
     detailX = createSlider(-401, 400, 1);
@@ -398,7 +404,9 @@ var drawScene2 = function() {
     currentScene = 2;
     //    background(150, 150, 175);
     background(51);
-    flower()
+    drawPlayer()
+    drawDialog()
+    drawSpells()
 
 
 };
@@ -406,7 +414,7 @@ var drawScene3 = function() {
     currentScene = 3;
     //    background(150, 150, 175);
     background(51);
-    circles()
+    drawSpells()
 
 
 };

@@ -6,11 +6,16 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js" type="text/javascript"></script> -->
     <script src="shapes.js"></script>
     <script src="scripts/menu.js"></script>
+    <script src="scripts/dialog.js"></script>
+    <script src="spells/Menu.js"></script>
+    <script src="spells/menuItem.js"></script>
+    <script src="spells/sketch.js"></script>
     <!-- <script src="scripts/audio/sound.js"></script> -->
     <!-- <script src="scripts/audio/chords.js"></script> -->
     <!-- <script src="scripts/audio/drums.js"></script> -->
     <!-- <script src="scripts/audio/synth.js"></script> -->
     <script src="sketch.js"></script>
+    <script src="scripts/player.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <!-- <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script> -->
     <script type="text/javascript" src="vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
@@ -31,7 +36,7 @@
         <!-- <div class="console">Console...</div> -->
     </main>
 
-    <div id="visualization"></div>
+    <div id="visualization" style="width: 400;"></div>
     <script type="text/javascript">
       // DOM element where the Timeline will be attached
       var container = document.getElementById('visualization');
@@ -57,8 +62,8 @@
         
         // Create a DataSet (allows two way data-binding)
         var items = new vis.DataSet([
-          {id: 1, content: 'flower', start: now1, end: now2, duration: (now2-now1)/1000 },
-          {id: 2, content: 'item 1', start: now3, end: now4, duration: (now4-now3)/1000 },
+          {id: 2, content: 'menu', start: now1, end: now2, duration: (now2-now1)/1000 },
+          {id: 1, content: 'dialog', start: now3, end: now4, duration: (now4-now3)/1000 },
           {id: 3, content: 'item 1', start: now4, end: now5, duration: (now2-now1)/1000 },
           {id: 4, content: 'drums', start: now5, end: now6, duration: (now2-now1)/1000 },
         ]);
