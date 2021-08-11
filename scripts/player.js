@@ -9,9 +9,9 @@
 //       cy = c.height/2;
 let map = [
     0, 1, 2, 3, 4, 5, 6, 7 ,8 ,
-    9, 10, 11, 21,22,20,50,51,52,
-    53, 4,  5, 21,22,20,50,51,52,
-    50,4,4,4,4,4,4,4,4,
+    4,4,4,4,4,4,4,4,4,
+    4,4,4,4,4,4,4,4,4,
+    4,4,4,4,4,4,4,4,4,
 
 ];
 
@@ -19,7 +19,7 @@ function preloadPlayer() {
     tileset = loadImage("assets/blockPack_Packed.png");
 }
 
-  let atk = 1;
+  let atk = 0;
   
   // Setting up the Canvas
   function setupPlayer() {
@@ -55,7 +55,7 @@ function preloadPlayer() {
         let dy = Math.floor(i / d_cols) * tilesizey;
         // render image
         let d = Math.floor(i / 9) * 14
-        console.log("i is " + i + " divide %" + Math.floor(i / 9))
+        // console.log("i is " + i + " divide %" + Math.floor(i / 9))
         if(i < 9){
             image(tileset, dx, dy, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
         } else if (i >= 9) {
@@ -113,7 +113,7 @@ function preloadPlayer() {
     }
     
     moveUp() {
-      this.y-=20;
+      this.y-=14;
     }
     
     moveRight() {
@@ -121,7 +121,7 @@ function preloadPlayer() {
     }
     
     moveDown() {
-      this.y+=20;
+      this.y+=14;
     }
     
     moveLeft() {
