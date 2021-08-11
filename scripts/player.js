@@ -12,10 +12,21 @@ let map = [
     4, 4, 4, 4, 4, 4, 4, 4, 4,
     4, 4, 4, 62, 61, 63, 4, 4, 4,
     4, 4, 4, 4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4, 4, 4, 4,
 
 ];
 
-let blockers = [61, 62, 63]
+let mapEnemies = [
+    -1, 112, -1, -1, 90, -1, -1, 113, -1,
+    90, -1, -1, -1, -1, -1, -1, -1, -1,
+    90, -1, -1, -1, -1, -1, -1, -1, -1,
+    90, -1, 90, 119, -1, -1, -1, -1, -1,
+    -1, 109, 112, 112, 112, 112, 112, 112, 112,
+]
+
+let blockers = [61, 62, 63,1,2,3,5,6,7,8]
+let blockersEnemy = [90, 112, 109]
+let blockersNpc = [119]
 
 function preloadPlayer() {
     tileset = loadImage("assets/blockPack_Packed.png");
@@ -40,8 +51,9 @@ function drawPlayer() {
     scale(2.5)
         //translate(100,100)
     drawTiles(map, 9, 20, 18, 28);
-
     player.draw();
+    drawEnemies(mapEnemies, 9, 20, 18, 28)
+
     player.attack(atk);
     pop()
 }
@@ -63,6 +75,31 @@ function drawTiles(map, d_cols, s_cols, tilesizex, tilesizey) {
         } else if (i >= 9) {
 
             image(tileset, dx, dy - d, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        }
+        // else if (i < 27) {
+        //     image(tileset, dx, dy-28, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        // }
+
+    }
+}
+
+function drawEnemies(map, d_cols, s_cols, tilesizex, tilesizey) {
+    for (let i = 0; i < map.length; i++) {
+        let value = map[i];
+        // source x , y
+        let sx = (value % s_cols) * tilesizex;
+        let sy = Math.floor(value / s_cols) * tilesizey;
+        // distenation x , y
+        let dx = (i % d_cols) * tilesizex;
+        let dy = Math.floor(i / d_cols) * tilesizey;
+        // render image
+        let d = Math.floor(i / 9) * 14
+            // console.log("i is " + i + " divide %" + Math.floor(i / 9))
+        if (i < 9) {
+            image(tileset, dx, dy-14, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        } else if (i >= 9) {
+
+            image(tileset, dx, dy - d - 14, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
         }
         // else if (i < 27) {
         //     image(tileset, dx, dy-28, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
@@ -105,8 +142,8 @@ function keyPressed() {
 class Player {
     constructor() {
         this.size = 16;
-        this.x = 1;
-        this.y = 1;
+        this.x = 1+18;
+        this.y = 1+14;
     }
 
     draw() {
@@ -119,6 +156,9 @@ class Player {
         if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
             this.y += 14;
         }
+        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
+            this.y += 14;
+        }
 
     }
 
@@ -126,6 +166,9 @@ class Player {
 
         this.x += 18;
         if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
+            this.x -= 18;
+        }
+        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
             this.x -= 18;
         }
         //console.log("player on " + "x " + this.x + " y " + this.y + " tilemap " + map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9])
@@ -136,6 +179,9 @@ class Player {
         if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
             this.y -= 14;
         }
+        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
+            this.y -= 14;
+        }
     }
 
     moveLeft() {
@@ -143,7 +189,9 @@ class Player {
         if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
             this.x += 18;
         }
-
+        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
+            this.x += 18;
+        }
     }
 
     attack(atk) {
