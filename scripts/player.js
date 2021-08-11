@@ -8,8 +8,10 @@
 //   let cx = c.width/2,
 //       cy = c.height/2;
 let map = [
-    41,  3, 10,
-    21,22,20,50,51,52,53
+    41, 3, 10, 21,22,20,50,51,52,
+    53, 4,  5, 21,22,20,50,51,52,
+    4,4,4,4,4,4,4,4,4,
+    
 ];
 
 function preloadPlayer() {
@@ -28,12 +30,17 @@ function preloadPlayer() {
   
   // Where the Magic Happens (It draws)
   function drawPlayer() {
-      background(0);
+      //background(0);
       //drawMap(20,20);
-      drawTiles(map, 7, 20, 18, 28);
+      push()
+      noSmooth();
+      scale(2.5)
+      //translate(100,100)
+      drawTiles(map, 9, 20, 18, 28);
 
       player.draw();
       player.attack(atk);
+      pop()
   }
   
   function drawTiles(map, d_cols, s_cols, tilesizex, tilesizey) {
@@ -98,7 +105,7 @@ function preloadPlayer() {
     }
     
     moveRight() {
-      this.x+=20;
+      this.x+=18;
     }
     
     moveDown() {
@@ -106,7 +113,7 @@ function preloadPlayer() {
     }
     
     moveLeft() {
-      this.x-=20;
+      this.x-=18;
     }
     
     attack(atk) {
