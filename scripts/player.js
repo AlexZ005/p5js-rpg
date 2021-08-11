@@ -8,10 +8,11 @@
 //   let cx = c.width/2,
 //       cy = c.height/2;
 let map = [
-    41, 3, 10, 21,22,20,50,51,52,
+    0, 1, 2, 3, 4, 5, 6, 7 ,8 ,
+    9, 10, 11, 21,22,20,50,51,52,
     53, 4,  5, 21,22,20,50,51,52,
-    4,4,4,4,4,4,4,4,4,
-    
+    50,4,4,4,4,4,4,4,4,
+
 ];
 
 function preloadPlayer() {
@@ -44,7 +45,7 @@ function preloadPlayer() {
   }
   
   function drawTiles(map, d_cols, s_cols, tilesizex, tilesizey) {
-    for (let i = map.length - 1; i > -1; --i) {
+    for (let i = 0; i < map.length; i++) {
         let value = map[i];
         // source x , y
         let sx = (value % s_cols) * tilesizex;
@@ -53,7 +54,18 @@ function preloadPlayer() {
         let dx = (i % d_cols) * tilesizex;
         let dy = Math.floor(i / d_cols) * tilesizey;
         // render image
-        image(tileset, dx, dy, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        let d = Math.floor(i / 9) * 14
+        console.log("i is " + i + " divide %" + Math.floor(i / 9))
+        if(i < 9){
+            image(tileset, dx, dy, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        } else if (i >= 9) {
+            
+            image(tileset, dx, dy-d, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        }
+        // else if (i < 27) {
+        //     image(tileset, dx, dy-28, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+        // }
+
     }
 }
 
