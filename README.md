@@ -15,3 +15,11 @@ Spell menu: https://editor.p5js.org/mikedasilva7/full/5AAG06Wbd
   
 Player grid: https://codepen.io/Twinbee/pen/bGbXarp  
   
+  
+# License for some assets (Creative Commons Zero, CC0)  
+  
+	RPG Block Pack (Pixel)  
+	by  Kenney Vleugels (Kenney.nl)  
+http://creativecommons.org/publicdomain/zero/1.0/  
+Consider purchasing Kenney Game Assets.  
+Credit to Kenney (www.kenney.nl)  

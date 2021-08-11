@@ -7,7 +7,15 @@
   
 //   let cx = c.width/2,
 //       cy = c.height/2;
-  
+let map = [
+    41,  3, 10,
+    21,22,20,50,51,52,53
+];
+
+function preloadPlayer() {
+    tileset = loadImage("assets/blockPack_Packed.png");
+}
+
   let atk = 1;
   
   // Setting up the Canvas
@@ -21,11 +29,27 @@
   // Where the Magic Happens (It draws)
   function drawPlayer() {
       background(0);
-      drawMap(20,20);
+      //drawMap(20,20);
+      drawTiles(map, 7, 20, 18, 28);
+
       player.draw();
       player.attack(atk);
   }
   
+  function drawTiles(map, d_cols, s_cols, tilesizex, tilesizey) {
+    for (let i = map.length - 1; i > -1; --i) {
+        let value = map[i];
+        // source x , y
+        let sx = (value % s_cols) * tilesizex;
+        let sy = Math.floor(value / s_cols) * tilesizey;
+        // distenation x , y
+        let dx = (i % d_cols) * tilesizex;
+        let dy = Math.floor(i / d_cols) * tilesizey;
+        // render image
+        image(tileset, dx, dy, tilesizex, tilesizey, sx, sy, tilesizex, tilesizey);
+    }
+}
+
   // Random Color Function for Testing
   function randomColor() {
     let r = Math.floor((Math.random() * 255) + 1);

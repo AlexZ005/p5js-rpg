@@ -45,6 +45,7 @@ let mySynth = new p5.MonoSynth();
 function preload(){
   preloadSpells();
   preloadDialog();
+  preloadPlayer();
 }
 
 function setup() {
@@ -406,7 +407,7 @@ var drawScene2 = function() {
     background(51);
     drawPlayer()
     drawDialog()
-    drawSpells()
+    //drawSpells()
 
 
 };
