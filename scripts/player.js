@@ -29,7 +29,7 @@ let blockersEnemy = [90, 112, 109]
 let blockersNpc = [119]
 
 function preloadPlayer() {
-    tileset = loadImage("assets/blockPack_Packed.png");
+    tileset = loadImage("assets/blockPack.png");
 }
 
 let atk = 0;
