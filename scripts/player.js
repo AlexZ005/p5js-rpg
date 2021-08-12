@@ -141,6 +141,8 @@ function drawMap(w, h) {
 }
 
 function keyPressed() {
+    if (menuActive){keyPressedMenu()}
+
     if (keyCode === UP_ARROW) {
         player.move(0,-14);
     } else if (keyCode === RIGHT_ARROW) {
@@ -151,6 +153,16 @@ function keyPressed() {
         player.move(-18,0);
     } else if (keyCode === ENTER) {
         spellsActive = 1 - spellsActive
+        _menuChangeSound.play();
+        //mySynth.play('A7');
+    } else if (keyCode === ESCAPE) {
+        //spellsActive = 1 - spellsActive
+        menuActive = 1;
+        currentScene = 1;
+        options.start = now1;
+        options.end = now1-1000;
+        _menuChangeSound.play();
+        //mySynth.play('A7');
     }
 }
 
@@ -168,7 +180,7 @@ class Player {
 
     move(x,y) {
         //console.log(x + " + " + y)
-        if (!spellsActive){
+        if (!spellsActive && !menuActive){
             this.x += x;        
             this.y += y;
         }

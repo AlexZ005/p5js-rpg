@@ -73,7 +73,7 @@ function setupSpells() {
 
   _menu = new Menu(x1, x2, 25);
   _menu.GenerateMenu();
-  _menuChangeSound.play();
+//  _menuChangeSound.play();
 }
 
 function drawSpells() {
