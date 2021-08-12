@@ -15,3 +15,15 @@ Spell menu: https://editor.p5js.org/mikedasilva7/full/5AAG06Wbd
   
 Player grid: https://codepen.io/Twinbee/pen/bGbXarp  
   
+# Useful Articles
+  Code performance: https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance  
+  
+# License for some assets (Creative Commons Zero, CC0)  
+  
+	RPG Block Pack (Pixel)  
+	by  Kenney Vleugels (Kenney.nl)  
+http://creativecommons.org/publicdomain/zero/1.0/  
+Consider purchasing Kenney Game Assets.  
+Credit to Kenney (www.kenney.nl)  
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAlexZ005%2Fp5js-rpg&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=PageViews&edge_flat=false)](https://hits.seeyoufarm.com)

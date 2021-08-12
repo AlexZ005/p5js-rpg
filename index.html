@@ -18,15 +18,15 @@
     <script src="scripts/player.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
-<!--     <script type="text/javascript" src="vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script> -->
+    <!-- <script type="text/javascript" src="vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script> -->
     <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-<!--     <link href="vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" /> -->
     <style type="text/css">
-      #visualization {
-        width: 600px;
-        height: 400px;
-        border: 1px solid lightgray;
-      }
+        #visualization {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
     </style>
 </head>
 
@@ -36,48 +36,71 @@
         <!-- <div class="console">Console...</div> -->
     </main>
 
-    <div id="visualization" style="width: 400;"></div>
+    <div id="visualization" style="width: 400; height: 200;"></div>
     <script type="text/javascript">
-      // DOM element where the Timeline will be attached
-      var container = document.getElementById('visualization');
-    
+        // DOM element where the Timeline will be attached
+        var container = document.getElementById('visualization');
 
-    var now = new Date();
-    var now1 = new Date(now.getTime()+ 1 * 1000);
-    var now2 = new Date(now.getTime()+ 2 * 1000);
-    var now3 = new Date(now.getTime()+ 2 * 1000);
-    var now4 = new Date(now.getTime()+ 4 * 1000);
-    var now5 = new Date(now.getTime()+ 5 * 1000);
-    var now6 = new Date(now.getTime()+ 6 * 1000);
-    
-      // Configuration for the Timeline
-      var options = {
-          width:  "100%",
-          height: "99%",
-          editable: true,
-          margin: { item: 0 },
-          start: now, // minus 3 days
-          end: now.getTime() + 1 * 1000, // plus 10 seconds
+
+        var now = new Date();
+        var now1 = new Date(now.getTime() + 1 * 1000);
+        var now2 = new Date(now.getTime() + 4 * 1000);
+        var now3 = new Date(now.getTime() + 4 * 1000);
+        var now4 = new Date(now.getTime() + 8 * 1000);
+        var now5 = new Date(now.getTime() + 7 * 1000);
+        var now6 = new Date(now.getTime() + 8 * 1000);
+
+        // Configuration for the Timeline
+        var options = {
+            width: "100%",
+            height: "99%",
+            editable: true,
+            margin: {
+                item: 0
+            },
+            start: now, // minus 3 days
+            end: now.getTime() + 1 * 10000, // plus 10 seconds
+            //this options.end is set to see the whole timeline
+            //menu.js overrides end time
         };
-        
+
         // Create a DataSet (allows two way data-binding)
-        var items = new vis.DataSet([
-          {id: 2, content: 'menu', start: now1, end: now2, duration: (now2-now1)/1000 },
-          {id: 1, content: 'dialog', start: now3, end: now4, duration: (now4-now3)/1000 },
-          {id: 3, content: 'item 1', start: now4, end: now5, duration: (now2-now1)/1000 },
-          {id: 4, content: 'drums', start: now5, end: now6, duration: (now2-now1)/1000 },
-        ]);
+        var items = new vis.DataSet([{
+            id: 1,
+            content: 'menu',
+            start: now1,
+            end: now2,
+            duration: (now2 - now1) / 1000
+        }, {
+            id: 2,
+            content: 'game',
+            start: now3,
+            end: now4,
+            duration: (now4 - now3) / 1000
+        }, {
+            id: 3,
+            content: 'spells',
+            start: now4,
+            end: now5,
+            duration: (now2 - now1) / 1000
+        }, {
+            id: 4,
+            content: 'drums',
+            start: now5,
+            end: now6,
+            duration: (now2 - now1) / 1000
+        }, ]);
 
         // Create a Timeline
-      var timeline = new vis.Timeline(container, items, options);
-      //timeline.destroy()
+        var timeline = new vis.Timeline(container, items, options);
+        //timeline.destroy()
 
-      if (debug == "off") {
-      document.getElementsByClassName('vis-loading-screen')[0].style.display = 'none';
-      document.getElementsByClassName('vis-timeline vis-bottom vis-ltr')[0].style.display = 'none';
-      //document.querySelector("#visualization").style.visibility = 'hidden';
-      document.getElementById('visualization').style.display = 'none';      
-    }
+        if (debug == "off") {
+            document.getElementsByClassName('vis-loading-screen')[0].style.display = 'none';
+            document.getElementsByClassName('vis-timeline vis-bottom vis-ltr')[0].style.display = 'none';
+            //document.querySelector("#visualization").style.visibility = 'hidden';
+            document.getElementById('visualization').style.display = 'none';
+        }
     </script>
 </body>
 

@@ -45,6 +45,7 @@ let mySynth = new p5.MonoSynth();
 function preload(){
   preloadSpells();
   preloadDialog();
+  preloadPlayer();
 }
 
 function setup() {
@@ -405,15 +406,15 @@ var drawScene2 = function() {
     //    background(150, 150, 175);
     background(51);
     drawPlayer()
-    drawDialog()
-    drawSpells()
+    
+    
 
 
 };
 var drawScene3 = function() {
     currentScene = 3;
     //    background(150, 150, 175);
-    background(51);
+    //background(51);
     drawSpells()
 
 
@@ -423,7 +424,7 @@ var drawScene3 = function() {
 var drawScene4 = function() {
   currentScene = 4;
   //    background(150, 150, 175);
-  background(51);
+  //background(51);
   //archimedeanSpiral();
 
   push();
