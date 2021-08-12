@@ -81,7 +81,7 @@ function drawSpells() {
 
 //  background(_imgDesert);
 
-  tint(255, 225);
+//  tint(255, 225);
   if (flash) {
     if (o1 >= atTop) {
       up = false;
@@ -141,7 +141,7 @@ function drawSpells() {
     image(_imgArrowRight, 480, 620, 64, 64);
   }
 
-  image(_imgSelection, selectionX, selectionY, 70, 68);
+  image(_imgSelection, selectionX/2-10, selectionY/2-5, 70/2, 68/2);
   
   translate(width/2, height/2);
 

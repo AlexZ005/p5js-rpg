@@ -406,15 +406,15 @@ var drawScene2 = function() {
     //    background(150, 150, 175);
     background(51);
     drawPlayer()
-    drawDialog()
-    //drawSpells()
+    
+    
 
 
 };
 var drawScene3 = function() {
     currentScene = 3;
     //    background(150, 150, 175);
-    background(51);
+    //background(51);
     drawSpells()
 
 

@@ -33,6 +33,7 @@ function preloadPlayer() {
 }
 
 let atk = 0;
+let spellsActive = 0;
 
 // Setting up the Canvas
 function setupPlayer() {
@@ -46,6 +47,7 @@ function setupPlayer() {
 function drawPlayer() {
     //background(0);
     //drawMap(20,20);
+
     push()
     noSmooth();
     scale(2.5)
@@ -56,6 +58,17 @@ function drawPlayer() {
 
     player.attack(atk);
     pop()
+
+    drawDialog()
+    if (spellsActive){
+        drawSpells()
+    }
+    
+    // Draw FPS (rounded to 2 decimal places) at the bottom left of the screen
+let fps = frameRate();
+fill(255);
+stroke(0);
+text("FPS: " + fps.toFixed(2), 10, height - 10);
 }
 
 function drawTiles(map, d_cols, s_cols, tilesizex, tilesizey) {
@@ -129,13 +142,15 @@ function drawMap(w, h) {
 
 function keyPressed() {
     if (keyCode === UP_ARROW) {
-        player.moveUp();
+        player.move(0,-14);
     } else if (keyCode === RIGHT_ARROW) {
-        player.moveRight();
+        player.move(18,0);
     } else if (keyCode === DOWN_ARROW) {
-        player.moveDown();
+        player.move(0,14);
     } else if (keyCode === LEFT_ARROW) {
-        player.moveLeft();
+        player.move(-18,0);
+    } else if (keyCode === ENTER) {
+        spellsActive = 1 - spellsActive
     }
 }
 
@@ -151,48 +166,30 @@ class Player {
         rect(this.x, this.y, this.size, this.size);
     }
 
-    moveUp() {
-        this.y -= 14;
+    move(x,y) {
+        //console.log(x + " + " + y)
+        if (!spellsActive){
+            this.x += x;        
+            this.y += y;
+        }
         if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.y += 14;
+            this.x -= x;
+            this.y -= y;
         }
         if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.y += 14;
+            this.x -= x;
+            this.y -= y;
+//            currentScene = 1;
         }
-
-    }
-
-    moveRight() {
-
-        this.x += 18;
-        if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x -= 18;
-        }
-        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x -= 18;
+        if (blockersNpc.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
+            this.x -= x;
+            this.y -= y;
+            
+            //currentScene = 3;
         }
         //console.log("player on " + "x " + this.x + " y " + this.y + " tilemap " + map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9])
     }
 
-    moveDown() {
-        this.y += 14;
-        if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.y -= 14;
-        }
-        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.y -= 14;
-        }
-    }
-
-    moveLeft() {
-        this.x -= 18;
-        if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x += 18;
-        }
-        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x += 18;
-        }
-    }
 
     attack(atk) {
         switch (atk) {

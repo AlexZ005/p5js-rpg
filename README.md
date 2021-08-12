@@ -15,6 +15,8 @@ Spell menu: https://editor.p5js.org/mikedasilva7/full/5AAG06Wbd
   
 Player grid: https://codepen.io/Twinbee/pen/bGbXarp  
   
+# Useful Articles
+  Code performance: https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance  
   
 # License for some assets (Creative Commons Zero, CC0)  
   
