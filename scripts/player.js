@@ -32,8 +32,10 @@ function preloadPlayer() {
     tileset = loadImage("assets/blockPack_packed.png");
 }
 
+let npc = 0;
 let atk = 0;
 let spellsActive = 0;
+let dialogActive = 0;
 
 // Setting up the Canvas
 function setupPlayer() {
@@ -59,10 +61,8 @@ function drawPlayer() {
     player.attack(atk);
     pop()
 
-    drawDialog()
-    if (spellsActive){
-        drawSpells()
-    }
+    if (dialogActive){drawDialog(npc)}
+    if (spellsActive){drawSpells()}
     
     // Draw FPS (rounded to 2 decimal places) at the bottom left of the screen
 // let fps = frameRate();
@@ -141,17 +141,19 @@ function drawMap(w, h) {
 }
 
 function keyPressed() {
-    if (menuActive){keyPressedMenu()}
-
-    if (keyCode === UP_ARROW) {
-        player.move(0,-14);
-    } else if (keyCode === RIGHT_ARROW) {
-        player.move(18,0);
-    } else if (keyCode === DOWN_ARROW) {
-        player.move(0,14);
-    } else if (keyCode === LEFT_ARROW) {
-        player.move(-18,0);
-    } else if (keyCode === ENTER) {
+            
+    if (!spellsActive && !menuActive && !dialogActive){
+        if (keyCode === UP_ARROW) {
+            player.move(0,-14);
+        } else if (keyCode === RIGHT_ARROW) {
+            player.move(18,0);
+        } else if (keyCode === DOWN_ARROW) {
+            player.move(0,14);
+        } else if (keyCode === LEFT_ARROW) {
+            player.move(-18,0);
+        }
+    }
+    if (keyCode === ENTER && !dialogActive) {
         spellsActive = 1 - spellsActive
         _menuChangeSound.play();
         //mySynth.play('A7');
@@ -164,7 +166,16 @@ function keyPressed() {
         _menuChangeSound.play();
         //mySynth.play('A7');
     }
+
+    if (menuActive){keyPressedMenu()}
+    if (dialogActive){keyPressedDialog()}
+
 }
+
+// function dialogActive(npc) {
+//     console.log("dialog for " + npc)
+    
+// }
 
 class Player {
     constructor() {
@@ -180,25 +191,31 @@ class Player {
 
     move(x,y) {
         //console.log(x + " + " + y)
-        if (!spellsActive && !menuActive){
+         
             this.x += x;        
             this.y += y;
-        }
-        if (blockers.includes(map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x -= x;
-            this.y -= y;
-        }
-        if (blockersEnemy.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x -= x;
-            this.y -= y;
-//            currentScene = 1;
-        }
-        if (blockersNpc.includes(mapEnemies[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)])) {
-            this.x -= x;
-            this.y -= y;
-            
-            //currentScene = 3;
-        }
+
+            //check valid moves
+            let block = Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9)
+            console.log(block)
+            if (blockers.includes(map[block])) {
+                this.x -= x;
+                this.y -= y;
+            }
+            if (blockersEnemy.includes(mapEnemies[block])) {
+                this.x -= x;
+                this.y -= y;
+    //            currentScene = 1;
+            }
+            if (blockersNpc.includes(mapEnemies[block])) {
+                this.x -= x;
+                this.y -= y;
+
+                npc = mapEnemies[block]
+                dialogActive = 1
+                //currentScene = 3;
+            }
+        
         //console.log("player on " + "x " + this.x + " y " + this.y + " tilemap " + map[Math.floor(this.x / 18) + (Math.floor(this.y / 14) * 9])
     }
 

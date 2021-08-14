@@ -65,9 +65,12 @@ horse = new Sprite(animation, 60, 285, random(0.1, 0.4));
   //   horses[i] = new Sprite(animation, 0, i * 75, random(0.1, 0.4));
   // }
 }
-function drawDialog() {
+
+function drawDialog(npc) {
   //background(100);
-  var dialogue = ["Attack","Recover","Run"];
+  console.log("dialog for " + npc)
+//  var dialogue = ["Attack","Recover","Run"];
+  var dialogue = ["Welcome to RPG world!","Activate spells using Enter","Press Enter to close"];
   Say(dialogue[0]);
   Option(dialogue,2);
   
@@ -77,6 +80,24 @@ function drawDialog() {
     //horse.animate();
   // }
 }
+
+function keyPressedDialog(){
+  if (keyCode == UP_ARROW){
+//    menumode -= 1;
+    mySynth.play('A6');
+  }
+  if (keyCode == DOWN_ARROW){
+  //  menumode += 1;
+    mySynth.play('A6');
+  }
+  if (keyCode == ENTER){
+    //userStartAudio();
+    dialogActive = 0;
+  //  start(menumode)
+    
+  }
+}
+
 
 function Say(dialogue){
   var x = width/10;
