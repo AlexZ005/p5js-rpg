@@ -397,6 +397,7 @@ function draw() {
 var drawScene1 = function() {
     currentScene = 1;
     drawMenu() //remove background for flower\
+//    drawPlayer();
     //background(200, 175, 175);
 
 };
